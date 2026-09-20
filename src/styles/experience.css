@@ -1,0 +1,100 @@
+.experience {
+  position: relative;
+  display: flex;
+  min-height: 100dvh;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--color-soil-900);
+}
+
+.experience__header {
+  position: absolute;
+  inset: 0 0 auto 0;
+  z-index: var(--z-header);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-5) var(--space-4) var(--space-6);
+  text-align: center;
+  color: var(--color-text-inverse);
+  /* The header floats over the sky, so it needs its own legibility scrim. */
+  background: linear-gradient(to bottom, rgba(43, 30, 22, 0.55), transparent);
+  pointer-events: none;
+}
+
+.experience__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.experience__location {
+  margin: 0;
+  font-size: var(--text-sm);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.experience__subtitle {
+  max-width: 46ch;
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-base);
+  opacity: 0.9;
+}
+
+.experience__stage {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+
+.experience__hint {
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: var(--z-header);
+  margin: 0;
+  padding: var(--space-6) var(--space-4) var(--space-4);
+  text-align: center;
+  font-size: var(--text-sm);
+  color: var(--color-text-inverse);
+  background: linear-gradient(to top, rgba(43, 30, 22, 0.55), transparent);
+  pointer-events: none;
+}
+
+@media (max-width: 767px) {
+  .experience__header {
+    padding: var(--space-4) var(--space-3) var(--space-5);
+  }
+
+  .experience__subtitle {
+    font-size: var(--text-sm);
+  }
+
+  /* On touch there is no cursor to follow, so the desktop wording would lie. */
+  .experience__hint {
+    font-size: var(--text-xs);
+    padding: var(--space-5) var(--space-3) var(--space-3);
+  }
+}
+
+/*
+ * Which hint is shown follows the input model, not the screen width: a small
+ * window on a desktop still has a pointer, a large tablet still does not.
+ */
+.experience__hint--touch {
+  display: none;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .experience__hint--pointer {
+    display: none;
+  }
+
+  .experience__hint--touch {
+    display: inline;
+  }
+}
