@@ -1,0 +1,303 @@
+/*
+ * Modal, loading indicator and image fallback.
+ * Every colour, radius, shadow and duration comes from tokens.css.
+ * Local custom properties below are layout/stagger values that are specific to
+ * this component and deliberately not global tokens.
+ */
+
+/* ---------------------------------------------------------------
+ * Loading indicator
+ * --------------------------------------------------------------- */
+
+.loading-indicator {
+  --loading-dot-size: 8px;
+  --loading-stagger-step: 140ms;
+
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.loading-indicator__dot {
+  width: var(--loading-dot-size);
+  height: var(--loading-dot-size);
+  border-radius: var(--radius-full);
+  background: var(--color-soil-300);
+  animation: loading-breathe calc(var(--duration-image) * 2) var(--ease-out) infinite;
+}
+
+.loading-indicator__dot:nth-child(2) {
+  animation-delay: var(--loading-stagger-step);
+}
+
+.loading-indicator__dot:nth-child(3) {
+  animation-delay: calc(var(--loading-stagger-step) * 2);
+}
+
+.loading-indicator[data-reduced-motion='true'] .loading-indicator__dot {
+  animation: none;
+  opacity: 0.6;
+}
+
+@keyframes loading-breathe {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ---------------------------------------------------------------
+ * Image with fallback
+ * --------------------------------------------------------------- */
+
+.image-frame {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: var(--color-sky-low);
+  aspect-ratio: 16 / 10;
+}
+
+.image-frame__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+}
+
+.image-frame[data-status='loading'] .image-frame__img {
+  opacity: 0;
+}
+
+.image-frame__placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-sky-low);
+}
+
+.image-frame__fallback {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: linear-gradient(160deg, var(--color-soil-300), var(--color-soil-500));
+  color: var(--color-text-inverse);
+  text-align: center;
+}
+
+/* A coffee bean drawn with a border, so the fallback needs no extra asset. */
+.image-frame__bean {
+  width: 28px;
+  height: 20px;
+  border: 2px solid currentColor;
+  border-radius: var(--radius-full);
+  border-left-width: 6px;
+  opacity: 0.8;
+  transform: rotate(-20deg);
+}
+
+.image-frame__caption {
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: 1.4;
+}
+
+/* ---------------------------------------------------------------
+ * Modal
+ * --------------------------------------------------------------- */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: var(--color-overlay);
+}
+
+.modal-panel {
+  --modal-stagger-step: 70ms;
+
+  position: relative;
+  display: flex;
+  width: 100%;
+  max-height: 92dvh;
+  flex-direction: column;
+  overflow-y: auto;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-raised);
+  color: var(--color-text);
+  padding: var(--space-5) var(--space-4) var(--space-6);
+}
+
+.modal-panel__close {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  width: 48px;
+  height: 48px;
+  align-self: flex-end;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--color-surface-raised);
+  box-shadow: var(--shadow-soft);
+  color: var(--color-soil-700);
+  cursor: pointer;
+  font-size: var(--text-xl);
+  line-height: 1;
+  transition: background var(--duration-hover) var(--ease-out);
+}
+
+.modal-panel__close:hover {
+  background: var(--color-sky-low);
+}
+
+/* ---------------------------------------------------------------
+ * Modal content
+ * --------------------------------------------------------------- */
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.modal-content > * {
+  animation: modal-text-in var(--duration-modal-in) var(--ease-out) both;
+}
+
+.modal-content__eyebrow {
+  margin: 0;
+  animation-delay: var(--modal-stagger-step);
+  color: var(--color-clay);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.modal-content__image {
+  animation: modal-image-in var(--duration-image) var(--ease-out) both;
+  box-shadow: var(--shadow-soft);
+}
+
+.modal-content__title {
+  margin: var(--space-2) 0 0;
+  animation-delay: calc(var(--modal-stagger-step) * 2);
+  color: var(--color-soil-900);
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  line-height: 1.2;
+}
+
+.modal-content__divider {
+  width: 100%;
+  margin: 0;
+  animation-delay: calc(var(--modal-stagger-step) * 2.5);
+  border: 0;
+  border-top: 1px solid var(--color-soil-300);
+  opacity: 0.5;
+}
+
+.modal-content__description {
+  margin: 0;
+  animation-delay: calc(var(--modal-stagger-step) * 3);
+  color: var(--color-text);
+  font-size: var(--text-base);
+  line-height: 1.65;
+  /* A newline in the configured text is meaningful copy, keep it. */
+  white-space: pre-line;
+}
+
+.modal-content__location {
+  margin: var(--space-2) 0 0;
+  animation-delay: calc(var(--modal-stagger-step) * 4);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+}
+
+@keyframes modal-text-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes modal-image-in {
+  from {
+    opacity: 0;
+    transform: scale(1.03);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ---------------------------------------------------------------
+ * Reduced motion
+ * --------------------------------------------------------------- */
+
+.modal-panel[data-reduced-motion='true'] .modal-content > *,
+.modal-panel[data-reduced-motion='true'] .modal-content__image {
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modal-content > *,
+  .modal-content__image,
+  .loading-indicator__dot {
+    animation: none;
+  }
+}
+
+/* ---------------------------------------------------------------
+ * Desktop and up: a centred panel instead of a bottom sheet
+ * --------------------------------------------------------------- */
+
+@media (min-width: 48rem) {
+  .modal-backdrop {
+    align-items: center;
+    padding: var(--space-6);
+  }
+
+  .modal-panel {
+    max-width: 36rem;
+    max-height: 86dvh;
+    border-radius: var(--radius-lg);
+    padding: var(--space-5) var(--space-6) var(--space-6);
+  }
+
+  .modal-panel__close {
+    width: 40px;
+    height: 40px;
+  }
+
+  .modal-content__title {
+    font-size: var(--text-2xl);
+  }
+}
