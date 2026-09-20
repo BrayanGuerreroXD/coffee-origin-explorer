@@ -56,28 +56,37 @@ describe('worldToScreen', () => {
 })
 
 describe('layerCoverSize', () => {
-  it('covers the container plus the overscan', () => {
-    const cover = layerCoverSize({ width: 1000, height: 500 }, 100)
-    const factor = 1 + SCENE_WORLD.overscan
+  const factor = 1 + SCENE_WORLD.overscan
 
-    expect(cover.width).toBeCloseTo(10 * factor)
-    expect(cover.height).toBeCloseTo(5 * factor)
+  it('covers the world box plus the overscan', () => {
+    const cover = layerCoverSize(1.6)
+
+    expect(cover.width).toBeGreaterThanOrEqual(SCENE_WORLD.width * factor - 0.001)
+    expect(cover.height).toBeGreaterThanOrEqual(SCENE_WORLD.height * factor - 0.001)
   })
 
-  it('is always larger than the visible area', () => {
-    const container = { width: 1280, height: 800 }
-    const zoom = fitZoom(container)
-    const cover = layerCoverSize(container, zoom)
-
-    expect(cover.width).toBeGreaterThan(container.width / zoom)
-    expect(cover.height).toBeGreaterThan(container.height / zoom)
+  it('never distorts the artwork', () => {
+    for (const aspect of [0.5, 1, 1.6, 3]) {
+      const cover = layerCoverSize(aspect)
+      expect(cover.width / cover.height).toBeCloseTo(aspect)
+    }
   })
 
-  it('falls back to the world box when the zoom is not usable', () => {
-    const factor = 1 + SCENE_WORLD.overscan
-    expect(layerCoverSize({ width: 1000, height: 500 }, 0)).toEqual({
-      width: SCENE_WORLD.width * factor,
-      height: SCENE_WORLD.height * factor,
-    })
+  it('touches the limiting axis rather than overshooting both', () => {
+    // A wide texture is height limited: it fits the box height and spills sideways.
+    const wide = layerCoverSize(4)
+    expect(wide.height).toBeCloseTo(SCENE_WORLD.height * factor)
+    expect(wide.width).toBeGreaterThan(SCENE_WORLD.width * factor)
+
+    // A tall texture is the mirror case.
+    const tall = layerCoverSize(0.5)
+    expect(tall.width).toBeCloseTo(SCENE_WORLD.width * factor)
+    expect(tall.height).toBeGreaterThan(SCENE_WORLD.height * factor)
+  })
+
+  it('falls back to the world box aspect when the texture size is unknown', () => {
+    const box = { width: SCENE_WORLD.width * factor, height: SCENE_WORLD.height * factor }
+    expect(layerCoverSize(0)).toEqual(box)
+    expect(layerCoverSize(Number.NaN)).toEqual(box)
   })
 })

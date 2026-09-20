@@ -8,15 +8,8 @@ import { FarmLayer } from './FarmLayer'
  * Back to front. `points` is absent on purpose: the interest points are DOM
  * nodes overlaid on the canvas, not a textured plane.
  */
-const LAYER_ORDER = [
-  'background',
-  'mountain',
-  'ground',
-  'vegetation',
-  'buildings',
-  'paths',
-  'foreground',
-] as const satisfies readonly (keyof SceneLayerImages & keyof typeof LAYER_FACTORS)[]
+const LAYER_ORDER = ['paper', 'map', 'foreground'] as const satisfies readonly (keyof SceneLayerImages &
+  keyof typeof LAYER_FACTORS)[]
 
 /**
  * Contents of the Canvas. Unlit on purpose — every layer is a pre-illustrated

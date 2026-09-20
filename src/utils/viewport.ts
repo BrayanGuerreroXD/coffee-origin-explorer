@@ -37,12 +37,27 @@ export function worldToScreen(
   }
 }
 
-/** Size in world units that a layer must span to cover the container plus overscan. */
-export function layerCoverSize(container: Size, zoom: number): Size {
+/**
+ * Size in world units of a layer plane whose texture has the given aspect
+ * ratio, scaled to cover the map plus overscan without distorting the artwork.
+ *
+ * It is anchored to the world box rather than to the viewport on purpose. If a
+ * layer were stretched to the viewport instead, a tall phone would scale the
+ * illustration three times more vertically than horizontally, and the artwork
+ * would also drift out of register with the interest points, which are placed
+ * in world units. On a viewport the artwork cannot fill at this scale, the sky
+ * gradient behind the canvas shows through — letterboxing beats distortion.
+ */
+export function layerCoverSize(aspect: number): Size {
   const factor = 1 + SCENE_WORLD.overscan
-  if (zoom <= 0) return { width: SCENE_WORLD.width * factor, height: SCENE_WORLD.height * factor }
-  return {
-    width: (container.width / zoom) * factor,
-    height: (container.height / zoom) * factor,
-  }
+  const targetWidth = SCENE_WORLD.width * factor
+  const targetHeight = SCENE_WORLD.height * factor
+  const safeAspect = aspect > 0 && Number.isFinite(aspect) ? aspect : targetWidth / targetHeight
+
+  // Cover: grow along whichever axis is still short of the target box.
+  const width = Math.max(targetWidth, targetHeight * safeAspect)
+  const height = Math.max(targetHeight, targetWidth / safeAspect)
+  return width / height > safeAspect
+    ? { width, height: width / safeAspect }
+    : { width: height * safeAspect, height }
 }

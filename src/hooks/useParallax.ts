@@ -50,18 +50,18 @@ export function layerOffset(
 }
 
 /**
- * Parallax factor of every scene layer, back to front. Matching the spec:
- * deeper layers move less, which is what reads as depth.
+ * Parallax factor of every plane, back to front. Deeper planes move less, which
+ * is what reads as depth.
+ *
+ * The values are low on purpose. The map is a single ink drawing rather than a
+ * stack of cut-outs, so the movement has to stay closer to a gentle drift than
+ * to a diorama; too much separation and the drawing visibly comes apart.
  */
 export const LAYER_FACTORS = {
-  background: 0.1,
-  mountain: 0.2,
-  ground: 0.35,
-  vegetation: 0.5,
-  buildings: 0.65,
-  paths: 0.75,
-  points: 0.85,
-  foreground: 1.0,
+  paper: 0.06,
+  map: 0.28,
+  points: 0.42,
+  foreground: 0.7,
 } as const
 
 export type LayerName = keyof typeof LAYER_FACTORS

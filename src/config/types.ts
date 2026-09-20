@@ -30,13 +30,15 @@ export interface ParallaxConfig {
   smoothing: number
 }
 
+/**
+ * The map is one ink drawing, not a stack of cut-out layers. It is split into
+ * only three planes: the paper it sits on, the drawing itself, and a restrained
+ * near-foreground. Any more than that and the parallax starts to reveal the
+ * seams between pieces of what should read as a single illustration.
+ */
 export interface SceneLayerImages {
-  background: string
-  mountain: string
-  ground: string
-  vegetation: string
-  buildings: string
-  paths: string
+  paper: string
+  map: string
   foreground: string
 }
 

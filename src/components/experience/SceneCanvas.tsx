@@ -88,10 +88,21 @@ export function SceneCanvas({ className, children }: SceneCanvasProps) {
           <SceneErrorBoundary onError={onError}>
             <Canvas
               className="scene__canvas"
+              // R3F writes `position: relative; width: 100%; height: 100%` inline
+              // on its wrapper, and a stylesheet rule cannot outrank that. The
+              // percentage height never resolves here, because `.scene` gets its
+              // height from the flex row rather than from a definite `height`, so
+              // the wrapper collapsed and the canvas fell back to its 150px
+              // intrinsic default. Overriding through the style prop, which R3F
+              // merges after its own defaults, gives it a definite box to measure.
+              style={{ position: 'absolute', inset: 0 }}
               orthographic
               camera={{ position: [0, 0, 10], near: 0.1, far: 100, zoom }}
               dpr={[1, 2]}
-              gl={{ antialias: true, alpha: false }}
+              // Transparent so the sky gradient on `.scene` shows through
+              // wherever the artwork does not reach, which is what keeps a tall
+              // phone letterboxed instead of distorted.
+              gl={{ antialias: true, alpha: true }}
               shadows={false}
             >
               <CameraZoomSync zoom={zoom} />

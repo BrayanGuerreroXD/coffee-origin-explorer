@@ -14,13 +14,9 @@
 }
 
 /*
- * R3F sets position/width/height inline on this element, so it already fills
- * the container. Only the parts it does not touch are declared here.
+ * The wrapper is positioned through the Canvas `style` prop, not from here:
+ * R3F writes its layout inline and a stylesheet rule cannot outrank that.
  */
-.scene__canvas {
-  display: block;
-}
-
 .scene__canvas canvas {
   display: block;
   outline: none;

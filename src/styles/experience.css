@@ -4,9 +4,14 @@
   min-height: 100dvh;
   flex-direction: column;
   overflow: hidden;
-  background: var(--color-soil-900);
+  background: var(--color-paper);
 }
 
+/*
+ * The header sits directly on the paper rather than on a dark scrim: the
+ * drawing is pale enough that ink type reads over it, and a scrim would break
+ * the illusion of one printed sheet.
+ */
 .experience__header {
   position: absolute;
   inset: 0 0 auto 0;
@@ -14,12 +19,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-1);
-  padding: var(--space-5) var(--space-4) var(--space-6);
+  gap: var(--space-2);
+  padding: var(--space-6) var(--space-4) var(--space-8);
   text-align: center;
-  color: var(--color-text-inverse);
-  /* The header floats over the sky, so it needs its own legibility scrim. */
-  background: linear-gradient(to bottom, rgba(43, 30, 22, 0.55), transparent);
+  color: var(--color-text);
   pointer-events: none;
 }
 
@@ -27,23 +30,27 @@
   margin: 0;
   font-family: var(--font-display);
   font-size: var(--text-2xl);
-  font-weight: 600;
-  letter-spacing: 0.01em;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.05;
 }
 
 .experience__location {
   margin: 0;
-  font-size: var(--text-sm);
-  letter-spacing: 0.14em;
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
-  opacity: 0.85;
+  color: var(--color-text-muted);
 }
 
 .experience__subtitle {
-  max-width: 46ch;
-  margin: var(--space-2) 0 0;
-  font-size: var(--text-base);
-  opacity: 0.9;
+  max-width: 44ch;
+  margin: var(--space-3) 0 0;
+  font-size: var(--text-sm);
+  font-style: italic;
+  color: var(--color-text-muted);
 }
 
 .experience__stage {
@@ -57,28 +64,13 @@
   inset: auto 0 0 0;
   z-index: var(--z-header);
   margin: 0;
-  padding: var(--space-6) var(--space-4) var(--space-4);
+  padding: var(--space-6) var(--space-4) var(--space-5);
   text-align: center;
-  font-size: var(--text-sm);
-  color: var(--color-text-inverse);
-  background: linear-gradient(to top, rgba(43, 30, 22, 0.55), transparent);
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
   pointer-events: none;
-}
-
-@media (max-width: 767px) {
-  .experience__header {
-    padding: var(--space-4) var(--space-3) var(--space-5);
-  }
-
-  .experience__subtitle {
-    font-size: var(--text-sm);
-  }
-
-  /* On touch there is no cursor to follow, so the desktop wording would lie. */
-  .experience__hint {
-    font-size: var(--text-xs);
-    padding: var(--space-5) var(--space-3) var(--space-3);
-  }
 }
 
 /*
@@ -96,5 +88,15 @@
 
   .experience__hint--touch {
     display: inline;
+  }
+}
+
+@media (max-width: 767px) {
+  .experience__header {
+    padding: var(--space-5) var(--space-3) var(--space-6);
+  }
+
+  .experience__subtitle {
+    font-size: var(--text-xs);
   }
 }

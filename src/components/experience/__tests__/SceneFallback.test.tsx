@@ -8,7 +8,7 @@ describe('SceneFallback', () => {
     render(<SceneFallback />)
 
     const image = screen.getByRole('img')
-    expect(image).toHaveAttribute('src', experienceConfig.layers.background)
+    expect(image).toHaveAttribute('src', experienceConfig.layers.map)
     expect(image.getAttribute('alt')).toContain(experienceConfig.location)
   })
 

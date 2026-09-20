@@ -5,12 +5,8 @@ interface ImportMetaEnv {
   readonly VITE_APP_LOCATION: string
   readonly VITE_APP_SUBTITLE: string
 
-  readonly VITE_FARM_BACKGROUND_IMAGE: string
-  readonly VITE_FARM_MOUNTAIN_IMAGE: string
-  readonly VITE_FARM_GROUND_IMAGE: string
-  readonly VITE_FARM_VEGETATION_IMAGE: string
-  readonly VITE_FARM_BUILDINGS_IMAGE: string
-  readonly VITE_FARM_PATHS_IMAGE: string
+  readonly VITE_FARM_PAPER_IMAGE: string
+  readonly VITE_FARM_MAP_IMAGE: string
   readonly VITE_FARM_FOREGROUND_IMAGE: string
 
   readonly VITE_POINT_1_ID: string

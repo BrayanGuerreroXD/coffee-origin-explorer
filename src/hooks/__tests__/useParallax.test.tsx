@@ -50,16 +50,7 @@ describe('layerOffset', () => {
 })
 
 describe('LAYER_FACTORS', () => {
-  const ORDER = [
-    'background',
-    'mountain',
-    'ground',
-    'vegetation',
-    'buildings',
-    'paths',
-    'points',
-    'foreground',
-  ] as const
+  const ORDER = ['paper', 'map', 'points', 'foreground'] as const
 
   it('covers exactly the known layers', () => {
     expect(Object.keys(LAYER_FACTORS).sort()).toEqual([...ORDER].sort())

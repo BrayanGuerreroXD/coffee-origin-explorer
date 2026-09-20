@@ -1,49 +1,48 @@
 /*
- * Design tokens for the experience. Warm, earthy, low-saturation: soil,
- * foliage, wood and roasted coffee. Every component reads these; no component
- * hardcodes a colour.
+ * Design tokens.
+ *
+ * The experience is drawn in ink on paper: one green ink at varying opacity
+ * carries the whole tonal range, on a pale, faintly green paper. Colour is
+ * deliberately almost absent — restraint is the style, not a limitation. The
+ * single accent exists for selection only and must stay rare.
  */
 :root {
-  /* Surfaces */
-  --color-sky-high: #cfe3e6;
-  --color-sky-low: #f2e6d2;
-  --color-surface: #fbf6ee;
-  --color-surface-raised: #ffffff;
-  --color-overlay: rgba(43, 30, 22, 0.55);
+  /* Paper */
+  --color-paper: #eef1e6;
+  --color-paper-deep: #e3e8d9;
+  --color-paper-raised: #f6f8f1;
 
-  /* Earth and vegetation */
-  --color-soil-900: #2b1e16;
-  --color-soil-700: #4a3527;
-  --color-soil-500: #6f5238;
-  --color-soil-300: #a98763;
-  --color-clay: #b4643a;
-  --color-leaf-900: #1f3a24;
-  --color-leaf-700: #2f5733;
-  --color-leaf-500: #4c7a45;
-  --color-leaf-300: #7da362;
+  /* Ink, the only drawing colour. Steps are opacity over paper, not new hues. */
+  --color-ink: #2a4433;
+  --color-ink-strong: #1b2e21;
+  --color-ink-muted: rgba(42, 68, 51, 0.62);
+  --color-ink-faint: rgba(42, 68, 51, 0.34);
+  --color-ink-hairline: rgba(42, 68, 51, 0.16);
 
-  /* Coffee cherry, used for interactive accents */
-  --color-cherry: #c0392b;
-  --color-cherry-bright: #e05a3f;
-  --color-ripe: #e8a33d;
+  /* The one accent. Selection and nothing else. */
+  --color-accent: #a8442c;
+
+  --color-overlay: rgba(27, 46, 33, 0.52);
 
   /* Text */
-  --color-text: #2b1e16;
-  --color-text-muted: #6f5238;
-  --color-text-inverse: #fbf6ee;
+  --color-text: #1b2e21;
+  --color-text-muted: rgba(42, 68, 51, 0.72);
+  --color-text-inverse: #eef1e6;
 
-  /* Focus ring, must stay visible over both sky and soil */
+  /* Focus ring, must stay visible over both paper and ink */
   --color-focus: #1b6fd4;
 
-  /* Typography */
-  --font-display: 'Georgia', 'Times New Roman', serif;
-  --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  /* Typography: a serif for display, matching the engraved feel. */
+  --font-display: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+  --font-body: 'Iowan Old Style', Georgia, 'Times New Roman', serif;
+  --font-ui: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
   --text-base: 1rem;
   --text-lg: 1.25rem;
   --text-xl: 1.75rem;
-  --text-2xl: clamp(1.75rem, 4vw, 3rem);
+  --text-2xl: clamp(2rem, 5vw, 3.75rem);
+  --tracking-wide: 0.18em;
 
   /* Space */
   --space-1: 0.25rem;
@@ -54,15 +53,15 @@
   --space-6: 2rem;
   --space-8: 3rem;
 
-  /* Radius and elevation */
-  --radius-sm: 6px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
+  /* Radius and elevation. Paper does not float much. */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
   --radius-full: 999px;
-  --shadow-soft: 0 2px 8px rgba(43, 30, 22, 0.12);
-  --shadow-raised: 0 18px 48px rgba(43, 30, 22, 0.28);
+  --shadow-soft: 0 1px 3px rgba(27, 46, 33, 0.1);
+  --shadow-raised: 0 24px 60px rgba(27, 46, 33, 0.22);
 
-  /* Motion, from the timing table in the spec */
+  /* Motion */
   --duration-hover: 200ms;
   --duration-backdrop: 260ms;
   --duration-modal-in: 420ms;
@@ -72,13 +71,35 @@
   --ease-in: cubic-bezier(0.6, 0, 0.98, 0.6);
 
   /* Interactive point sizing. Hit area stays a comfortable touch target. */
-  --point-dot-size: 18px;
+  --point-dot-size: 12px;
   --point-hit-size: 48px;
 
   --z-scene: 0;
   --z-points: 10;
   --z-header: 20;
   --z-modal: 100;
+
+  /*
+   * Legacy aliases. The scene and point modules were written against the
+   * earlier earth palette; these keep them rendering in ink until each one is
+   * restyled, rather than leaving them with undefined custom properties.
+   */
+  --color-surface: var(--color-paper);
+  --color-surface-raised: var(--color-paper-raised);
+  --color-sky-high: var(--color-paper);
+  --color-sky-low: var(--color-paper-deep);
+  --color-soil-900: var(--color-ink-strong);
+  --color-soil-700: var(--color-ink);
+  --color-soil-500: var(--color-ink-muted);
+  --color-soil-300: var(--color-ink-faint);
+  --color-leaf-900: var(--color-ink-strong);
+  --color-leaf-700: var(--color-ink);
+  --color-leaf-500: var(--color-ink-muted);
+  --color-leaf-300: var(--color-ink-faint);
+  --color-clay: var(--color-accent);
+  --color-cherry: var(--color-accent);
+  --color-cherry-bright: var(--color-accent);
+  --color-ripe: var(--color-ink-muted);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -107,12 +128,12 @@ body {
   margin: 0;
   font-family: var(--font-body);
   color: var(--color-text);
-  background: var(--color-soil-900);
+  background: var(--color-paper);
   -webkit-font-smoothing: antialiased;
 }
 
 :where(button, a, [tabindex]):focus-visible {
-  outline: 3px solid var(--color-focus);
+  outline: 2px solid var(--color-focus);
   outline-offset: 3px;
   border-radius: var(--radius-sm);
 }

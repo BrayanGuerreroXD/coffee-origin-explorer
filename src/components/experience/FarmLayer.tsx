@@ -1,7 +1,7 @@
 import { useMemo, useRef } from 'react'
-import { useFrame, useThree } from '@react-three/fiber'
+import { useFrame } from '@react-three/fiber'
 import { useTexture } from '@react-three/drei'
-import { SRGBColorSpace, type Mesh } from 'three'
+import { SRGBColorSpace, type Mesh, type Texture } from 'three'
 import { experienceConfig } from '../../config'
 import { layerCoverSize } from '../../utils/viewport'
 import { layerOffset, useParallax } from '../../hooks/useParallax'
@@ -22,41 +22,27 @@ export interface FarmLayerProps {
  */
 const Z_STEP = 0.01
 
+function textureAspect(texture: Texture): number {
+  const image = texture.image as { width?: number; height?: number } | undefined
+  if (!image?.width || !image?.height) return 1
+  return image.width / image.height
+}
+
 /** One textured plane of the illustrated map, displaced by the shared parallax. */
 export function FarmLayer({ src, factor, renderOrder, opacity = 1 }: FarmLayerProps) {
   const meshRef = useRef<Mesh>(null)
   const texture = useTexture(src)
-  const size = useThree((state) => state.size)
-  const zoom = useThree((state) => state.camera.zoom)
   const parallax = useParallax()
   const { maxX, maxY } = experienceConfig.parallax
 
-  // The plane is a unit quad scaled to cover the viewport plus overscan, so
-  // parallax can never drag an empty edge into frame.
-  const cover = useMemo(() => layerCoverSize(size, zoom), [size, zoom])
+  // Sized from the artwork's own aspect ratio and the world box, not from the
+  // viewport, so the illustration is never distorted and stays in register with
+  // the interest points whatever the screen shape.
+  const cover = useMemo(() => layerCoverSize(textureAspect(texture)), [texture])
 
-  // Last cover applied imperatively, so the frame loop can re-fit the plane
-  // without waiting for a React render when the camera zoom changes.
-  const fitted = useRef({ width: 0, height: 0, zoom: 0 })
-
-  useFrame((state) => {
+  useFrame(() => {
     const mesh = meshRef.current
     if (!mesh) return
-
-    const current = fitted.current
-    const cameraZoom = state.camera.zoom
-    if (
-      current.width !== state.size.width ||
-      current.height !== state.size.height ||
-      current.zoom !== cameraZoom
-    ) {
-      current.width = state.size.width
-      current.height = state.size.height
-      current.zoom = cameraZoom
-      // Allocates only when the viewport actually changed, not every frame.
-      const next = layerCoverSize(state.size, cameraZoom)
-      mesh.scale.set(next.width, next.height, 1)
-    }
 
     if (parallax.reducedMotion) {
       mesh.position.x = 0

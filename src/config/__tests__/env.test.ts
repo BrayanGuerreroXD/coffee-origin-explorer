@@ -24,12 +24,8 @@ function makeRawEnv(overrides: RawEnv = {}): RawEnv {
     VITE_APP_LOCATION: 'Gramalote, Norte de Santander',
     VITE_APP_SUBTITLE: 'Una finca, cinco lugares.',
 
-    VITE_FARM_BACKGROUND_IMAGE: '/img/background.svg',
-    VITE_FARM_MOUNTAIN_IMAGE: '/img/mountain.svg',
-    VITE_FARM_GROUND_IMAGE: '/img/ground.svg',
-    VITE_FARM_VEGETATION_IMAGE: '/img/vegetation.svg',
-    VITE_FARM_BUILDINGS_IMAGE: '/img/buildings.svg',
-    VITE_FARM_PATHS_IMAGE: '/img/paths.svg',
+    VITE_FARM_PAPER_IMAGE: '/img/paper.svg',
+    VITE_FARM_MAP_IMAGE: '/img/map.svg',
     VITE_FARM_FOREGROUND_IMAGE: '/img/foreground.svg',
   }
 
@@ -174,7 +170,7 @@ describe('validateRawEnv', () => {
 
   it('names every offending key in the thrown error, not just the first', () => {
     const raw = makeRawEnv({ VITE_APP_SUBTITLE: '  ', VITE_POINT_5_TEXT: '' })
-    delete raw.VITE_FARM_GROUND_IMAGE
+    delete raw.VITE_FARM_MAP_IMAGE
 
     let caught: unknown
     try {
@@ -187,7 +183,7 @@ describe('validateRawEnv', () => {
     const missing = (caught as EnvConfigError).missing
     expect(missing).toHaveLength(3)
     expect(missing).toContain('VITE_APP_SUBTITLE')
-    expect(missing).toContain('VITE_FARM_GROUND_IMAGE')
+    expect(missing).toContain('VITE_FARM_MAP_IMAGE')
     expect(missing).toContain('VITE_POINT_5_TEXT')
   })
 
@@ -233,12 +229,8 @@ describe('buildExperienceConfig', () => {
     const config = buildExperienceConfig(makeRawEnv())
 
     expect(config.layers).toEqual({
-      background: '/img/background.svg',
-      mountain: '/img/mountain.svg',
-      ground: '/img/ground.svg',
-      vegetation: '/img/vegetation.svg',
-      buildings: '/img/buildings.svg',
-      paths: '/img/paths.svg',
+      paper: '/img/paper.svg',
+      map: '/img/map.svg',
       foreground: '/img/foreground.svg',
     })
   })

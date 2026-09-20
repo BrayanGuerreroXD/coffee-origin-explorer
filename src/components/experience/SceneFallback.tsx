@@ -18,7 +18,7 @@ export function SceneFallback({ className, children }: SceneFallbackProps) {
     <div className={className ? `scene-fallback ${className}` : 'scene-fallback'}>
       <img
         className="scene-fallback__image"
-        src={experienceConfig.layers.background}
+        src={experienceConfig.layers.map}
         alt={`Ilustración de la finca cafetera en ${experienceConfig.location}`}
       />
       <p className="scene-fallback__note" role="status">
