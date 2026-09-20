@@ -11,28 +11,45 @@ export interface ParallaxProviderProps {
   className?: string
 }
 
+/** Mutable, non-rendering state of the loop. Never read during render. */
+interface ParallaxStore {
+  value: ParallaxVector
+  target: ParallaxVector
+  listeners: Set<(value: ParallaxVector) => void>
+}
+
+function createStore(): ParallaxStore {
+  return { value: { x: 0, y: 0 }, target: { x: 0, y: 0 }, listeners: new Set() }
+}
+
 /**
  * Owns the single pointer listener and the single animation loop of the
  * experience, and publishes the smoothed value through context.
+ *
+ * The mutable state lives in a ref, which is the right primitive for data that
+ * must never cause a render. The controller reaches it through a getter rather
+ * than by capturing `ref.current` during render, so nothing reads the ref while
+ * rendering and consumers still see the latest frame.
  *
  * Touch input is deliberately ignored: on a touch device there is no hovering
  * pointer to follow, and dragging the scene is out of scope for V1.
  */
 export function ParallaxProvider({ children, smoothing = 0.08, className }: ParallaxProviderProps) {
   const hostRef = useRef<HTMLDivElement>(null)
-  const target = useRef<ParallaxVector>({ x: 0, y: 0 })
-  const current = useRef<ParallaxVector>({ x: 0, y: 0 })
-  const listeners = useRef(new Set<(value: ParallaxVector) => void>())
+  const storeRef = useRef<ParallaxStore>(createStore())
   const reducedMotion = useReducedMotion()
 
   const controller = useMemo<ParallaxController>(
     () => ({
-      value: current.current,
+      get value() {
+        return storeRef.current.value
+      },
       reducedMotion,
       subscribe(listener) {
-        listeners.current.add(listener)
+        const { listeners } = storeRef.current
+        listeners.add(listener)
         return () => {
-          listeners.current.delete(listener)
+          listeners.delete(listener)
         }
       },
     }),
@@ -44,20 +61,20 @@ export function ParallaxProvider({ children, smoothing = 0.08, className }: Para
     if (!host) return
 
     if (reducedMotion) {
-      target.current.x = 0
-      target.current.y = 0
+      storeRef.current.target.x = 0
+      storeRef.current.target.y = 0
     }
 
     const onPointerMove = (event: PointerEvent) => {
       if (reducedMotion || event.pointerType === 'touch') return
       const next = normalizePointer(event.clientX, event.clientY, host.getBoundingClientRect())
-      target.current.x = next.x
-      target.current.y = next.y
+      storeRef.current.target.x = next.x
+      storeRef.current.target.y = next.y
     }
 
     const onPointerLeave = () => {
-      target.current.x = 0
-      target.current.y = 0
+      storeRef.current.target.x = 0
+      storeRef.current.target.y = 0
     }
 
     host.addEventListener('pointermove', onPointerMove, { passive: true })
@@ -71,10 +88,10 @@ export function ParallaxProvider({ children, smoothing = 0.08, className }: Para
   useEffect(() => {
     let frame = 0
     const tick = () => {
-      const value = current.current
-      value.x = lerp(value.x, target.current.x, smoothing)
-      value.y = lerp(value.y, target.current.y, smoothing)
-      for (const listener of listeners.current) listener(value)
+      const { value, target, listeners } = storeRef.current
+      value.x = lerp(value.x, target.x, smoothing)
+      value.y = lerp(value.y, target.y, smoothing)
+      for (const listener of listeners) listener(value)
       frame = requestAnimationFrame(tick)
     }
     frame = requestAnimationFrame(tick)
