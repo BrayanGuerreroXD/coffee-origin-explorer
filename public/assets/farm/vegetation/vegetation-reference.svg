@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  vegetation-reference.svg
+  TEMPORARY PLACEHOLDER ARTWORK. Original illustration drawn for
+  coffee-origin-explorer while the real photographs of the farm do not exist.
+  Replace with real farm artwork or photography.
+
+  Layer: VegetationLayer (parallax 0.50). TRANSPARENT background on purpose.
+  Coffee planted in contour rows, scattered shrubs and shade trees (guamos).
+  Rows are drawn as dashed round strokes so each dash reads as one bush.
+  Distant rows are pale and low contrast; near rows are dark and saturated.
+  Open, low-detail pockets are left where the five interest markers land.
+  Content overscans the viewBox on every side.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000">
+  <defs>
+    <linearGradient id="vgCanopy" x1="0.2" y1="0" x2="0.7" y2="1">
+      <stop offset="0" stop-color="#7da362" />
+      <stop offset="0.55" stop-color="#4c7a45" />
+      <stop offset="1" stop-color="#2f5733" />
+    </linearGradient>
+    <linearGradient id="vgCanopyNear" x1="0.2" y1="0" x2="0.7" y2="1">
+      <stop offset="0" stop-color="#5f8c4f" />
+      <stop offset="0.5" stop-color="#2f5733" />
+      <stop offset="1" stop-color="#1f3a24" />
+    </linearGradient>
+    <linearGradient id="vgTrunk" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6f5238" />
+      <stop offset="0.55" stop-color="#4a3527" />
+      <stop offset="1" stop-color="#2b1e16" />
+    </linearGradient>
+  </defs>
+
+  <!-- ==================================================================
+       FAR PLANTED SLOPES — barely there, cool and pale.
+       Kept clear of the markers at (1328,190) and (400,280): rows sit
+       below and to the sides of those spots.
+       ================================================================== -->
+  <g opacity="0.4" stroke-linecap="round" fill="none">
+    <path d="M1140 262 C 1250 232, 1400 226, 1560 248" stroke="#7fa08a" stroke-width="9" stroke-dasharray="2 13" />
+    <path d="M1160 292 C 1280 260, 1430 254, 1600 276" stroke="#7fa08a" stroke-width="9" stroke-dasharray="2 13" />
+    <path d="M1190 322 C 1310 292, 1460 286, 1640 306" stroke="#6f9280" stroke-width="10" stroke-dasharray="2 13" />
+    <path d="M240 336 C 350 306, 490 302, 620 322" stroke="#7fa08a" stroke-width="9" stroke-dasharray="2 13" />
+    <path d="M220 366 C 340 334, 490 330, 640 352" stroke="#7fa08a" stroke-width="9" stroke-dasharray="2 13" />
+    <path d="M196 398 C 320 366, 480 362, 650 384" stroke="#6f9280" stroke-width="10" stroke-dasharray="2 13" />
+    <path d="M-340 380 C -200 352, -40 348, 96 368" stroke="#7fa08a" stroke-width="9" stroke-dasharray="2 13" />
+    <path d="M760 348 C 880 318, 1010 316, 1120 334" stroke="#7fa08a" stroke-width="9" stroke-dasharray="2 13" />
+  </g>
+
+  <!-- ==================================================================
+       MID PLANTED SLOPES — the readable coffee lots
+       ================================================================== -->
+  <g stroke-linecap="round" fill="none">
+    <!-- shadow pass -->
+    <g stroke="#1f3a24" opacity="0.45" transform="translate(0,7)">
+      <path d="M-420 636 C -180 590, 100 570, 360 598" stroke-width="18" stroke-dasharray="3 19" />
+      <path d="M-420 706 C -150 652, 160 632, 450 664" stroke-width="19" stroke-dasharray="3 20" />
+      <path d="M700 574 C 840 534, 1000 534, 1130 572" stroke-width="16" stroke-dasharray="3 18" />
+      <path d="M1210 546 C 1360 508, 1540 508, 1720 540" stroke-width="16" stroke-dasharray="3 18" />
+      <path d="M1160 616 C 1330 574, 1530 574, 1740 610" stroke-width="18" stroke-dasharray="3 19" />
+      <path d="M990 700 C 1160 656, 1370 654, 1600 690" stroke-width="19" stroke-dasharray="3 20" />
+      <path d="M-420 796 C -120 736, 220 714, 520 750" stroke-width="21" stroke-dasharray="3 22" />
+    </g>
+    <!-- body pass -->
+    <g stroke="#2f5733">
+      <path d="M-420 636 C -180 590, 100 570, 360 598" stroke-width="17" stroke-dasharray="3 19" />
+      <path d="M-420 706 C -150 652, 160 632, 450 664" stroke-width="18" stroke-dasharray="3 20" />
+      <path d="M700 574 C 840 534, 1000 534, 1130 572" stroke-width="15" stroke-dasharray="3 18" />
+      <path d="M1210 546 C 1360 508, 1540 508, 1720 540" stroke-width="15" stroke-dasharray="3 18" />
+      <path d="M1160 616 C 1330 574, 1530 574, 1740 610" stroke-width="17" stroke-dasharray="3 19" />
+      <path d="M990 700 C 1160 656, 1370 654, 1600 690" stroke-width="18" stroke-dasharray="3 20" />
+      <path d="M-420 796 C -120 736, 220 714, 520 750" stroke-width="20" stroke-dasharray="3 22" />
+    </g>
+    <!-- highlight pass -->
+    <g stroke="#7da362" opacity="0.75" transform="translate(-3,-5)">
+      <path d="M-420 636 C -180 590, 100 570, 360 598" stroke-width="7" stroke-dasharray="2 20" />
+      <path d="M-420 706 C -150 652, 160 632, 450 664" stroke-width="7" stroke-dasharray="2 21" />
+      <path d="M700 574 C 840 534, 1000 534, 1130 572" stroke-width="6" stroke-dasharray="2 19" />
+      <path d="M1210 546 C 1360 508, 1540 508, 1720 540" stroke-width="6" stroke-dasharray="2 19" />
+      <path d="M1160 616 C 1330 574, 1530 574, 1740 610" stroke-width="7" stroke-dasharray="2 20" />
+      <path d="M990 700 C 1160 656, 1370 654, 1600 690" stroke-width="7" stroke-dasharray="2 21" />
+      <path d="M-420 796 C -120 736, 220 714, 520 750" stroke-width="8" stroke-dasharray="2 23" />
+    </g>
+  </g>
+
+  <!-- ==================================================================
+       NEAR PLANTED SLOPES — darkest, biggest bushes
+       ================================================================== -->
+  <g stroke-linecap="round" fill="none">
+    <g stroke="#1f3a24" opacity="0.5" transform="translate(0,9)">
+      <path d="M-420 908 C -60 840, 340 818, 700 862" stroke-width="26" stroke-dasharray="4 27" />
+      <path d="M760 940 C 960 908, 1180 906, 1400 934" stroke-width="26" stroke-dasharray="4 27" />
+      <path d="M1420 810 C 1600 776, 1820 776, 2020 806" stroke-width="24" stroke-dasharray="4 25" />
+      <path d="M-420 1030 C 0 956, 460 934, 900 984" stroke-width="30" stroke-dasharray="4 31" />
+    </g>
+    <g stroke="#2f5733">
+      <path d="M-420 908 C -60 840, 340 818, 700 862" stroke-width="25" stroke-dasharray="4 27" />
+      <path d="M760 940 C 960 908, 1180 906, 1400 934" stroke-width="25" stroke-dasharray="4 27" />
+      <path d="M1420 810 C 1600 776, 1820 776, 2020 806" stroke-width="23" stroke-dasharray="4 25" />
+      <path d="M-420 1030 C 0 956, 460 934, 900 984" stroke-width="29" stroke-dasharray="4 31" />
+    </g>
+    <g stroke="#4c7a45" opacity="0.85" transform="translate(-4,-7)">
+      <path d="M-420 908 C -60 840, 340 818, 700 862" stroke-width="11" stroke-dasharray="3 28" />
+      <path d="M760 940 C 960 908, 1180 906, 1400 934" stroke-width="11" stroke-dasharray="3 28" />
+      <path d="M1420 810 C 1600 776, 1820 776, 2020 806" stroke-width="10" stroke-dasharray="3 26" />
+      <path d="M-420 1030 C 0 956, 460 934, 900 984" stroke-width="13" stroke-dasharray="3 32" />
+    </g>
+    <!-- a few ripe cherries flecked into the nearest rows -->
+    <g fill="#c0392b" opacity="0.8">
+      <circle cx="-120" cy="874" r="4" />
+      <circle cx="96" cy="852" r="4" />
+      <circle cx="400" cy="836" r="4" />
+      <circle cx="622" cy="856" r="4" />
+      <circle cx="884" cy="922" r="4" />
+      <circle cx="1136" cy="914" r="4" />
+      <circle cx="1560" cy="792" r="4" />
+      <circle cx="1808" cy="788" r="4" />
+    </g>
+    <g fill="#e8a33d" opacity="0.75">
+      <circle cx="10" cy="862" r="3.5" />
+      <circle cx="512" cy="840" r="3.5" />
+      <circle cx="1010" cy="916" r="3.5" />
+      <circle cx="1690" cy="788" r="3.5" />
+      <circle cx="240" cy="1000" r="3.5" />
+    </g>
+  </g>
+
+  <!-- ==================================================================
+       SHADE TREES (guamos). Placed off the five marker spots.
+       ================================================================== -->
+  <g>
+    <!-- far, pale -->
+    <g opacity="0.45">
+      <rect x="704" y="392" width="7" height="46" fill="#7f8f7c" />
+      <path d="M707 400 C 660 398, 636 372, 656 348 C 646 322, 672 304, 700 312 C 722 292, 760 300, 766 326 C 796 332, 802 366, 776 382 C 762 402, 728 406, 707 400 Z" fill="#9dbaa3" />
+      <rect x="1052" y="404" width="6" height="42" fill="#7f8f7c" />
+      <path d="M1055 412 C 1016 410, 996 388, 1012 368 C 1004 346, 1026 332, 1048 338 C 1066 322, 1098 328, 1103 350 C 1128 355, 1133 383, 1111 396 C 1099 413, 1072 417, 1055 412 Z" fill="#9dbaa3" />
+    </g>
+    <!-- middle distance -->
+    <g>
+      <rect x="196" y="612" width="11" height="74" fill="url(#vgTrunk)" />
+      <path d="M201 626 C 136 622, 104 586, 132 552 C 120 514, 156 488, 194 500 C 224 472, 278 483, 286 520 C 328 528, 336 576, 300 598 C 280 626, 232 632, 201 626 Z" fill="url(#vgCanopy)" />
+      <path d="M150 560 C 178 540, 220 534, 252 544" stroke="#7da362" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.7" />
+
+      <rect x="1470" y="656" width="12" height="80" fill="url(#vgTrunk)" />
+      <path d="M1476 670 C 1406 666, 1372 628, 1402 592 C 1389 551, 1428 523, 1468 536 C 1500 506, 1558 518, 1566 558 C 1611 566, 1620 618, 1581 641 C 1560 671, 1509 677, 1476 670 Z" fill="url(#vgCanopy)" />
+      <path d="M1422 600 C 1452 578, 1497 572, 1531 583" stroke="#7da362" stroke-width="5" stroke-linecap="round" fill="none" opacity="0.7" />
+
+      <rect x="640" y="724" width="12" height="82" fill="url(#vgTrunk)" />
+      <path d="M646 740 C 578 736, 545 698, 574 662 C 561 622, 599 594, 638 607 C 669 578, 725 589, 733 628 C 777 636, 786 687, 748 710 C 728 739, 678 746, 646 740 Z" fill="url(#vgCanopy)" />
+    </g>
+    <!-- near, dark and warm -->
+    <g>
+      <rect x="1034" y="836" width="17" height="112" fill="url(#vgTrunk)" />
+      <path d="M1042 858 C 950 852, 906 800, 946 752 C 928 697, 981 659, 1034 677 C 1076 636, 1152 652, 1163 705 C 1223 716, 1235 785, 1183 816 C 1155 856, 1086 866, 1042 858 Z" fill="url(#vgCanopyNear)" />
+      <path d="M970 770 C 1010 740, 1072 732, 1118 748" stroke="#4c7a45" stroke-width="7" stroke-linecap="round" fill="none" opacity="0.7" />
+
+      <rect x="-60" y="920" width="19" height="130" fill="url(#vgTrunk)" />
+      <path d="M-50 944 C -150 938, -198 882, -154 830 C -174 770, -116 728, -58 748 C -12 704, 70 721, 82 779 C 147 791, 160 866, 104 900 C 73 944, -2 954, -50 944 Z" fill="url(#vgCanopyNear)" />
+    </g>
+  </g>
+
+  <!-- ==================================================================
+       LOOSE SHRUBS AND PLANTAIN CLUMPS
+       ================================================================== -->
+  <g>
+    <g fill="#2f5733">
+      <path d="M470 692 c 18 -34 52 -34 70 0 c 26 -12 44 8 34 30 l -138 0 c -10 -22 8 -42 34 -30 Z" />
+      <path d="M1256 704 c 16 -30 46 -30 62 0 c 23 -10 39 7 30 26 l -122 0 c -9 -19 7 -36 30 -26 Z" />
+      <path d="M840 776 c 18 -34 52 -34 70 0 c 26 -12 44 8 34 30 l -138 0 c -10 -22 8 -42 34 -30 Z" />
+      <path d="M1720 692 c 16 -30 46 -30 62 0 c 23 -10 39 7 30 26 l -122 0 c -9 -19 7 -36 30 -26 Z" />
+      <path d="M92 676 c 15 -28 43 -28 58 0 c 21 -9 36 7 28 24 l -114 0 c -8 -17 7 -33 28 -24 Z" />
+    </g>
+    <!-- plantain clumps, larger blades -->
+    <g fill="#4c7a45">
+      <g transform="translate(560,952)">
+        <path d="M0 0 C -58 -14, -92 -58, -84 -104 C -52 -74, -22 -40, 0 0 Z" />
+        <path d="M0 0 C 56 -18, 88 -64, 78 -110 C 48 -76, 20 -40, 0 0 Z" />
+        <path d="M0 0 C -22 -46, -18 -100, 12 -136 C 22 -92, 14 -44, 0 0 Z" />
+        <path d="M0 0 C 34 -34, 82 -50, 122 -38 C 86 -10, 42 6, 0 0 Z" />
+        <path d="M0 0 C -36 -32, -86 -46, -126 -32 C -88 -6, -44 8, 0 0 Z" />
+      </g>
+      <g transform="translate(1610,1000) scale(0.9)">
+        <path d="M0 0 C -58 -14, -92 -58, -84 -104 C -52 -74, -22 -40, 0 0 Z" />
+        <path d="M0 0 C 56 -18, 88 -64, 78 -110 C 48 -76, 20 -40, 0 0 Z" />
+        <path d="M0 0 C -22 -46, -18 -100, 12 -136 C 22 -92, 14 -44, 0 0 Z" />
+        <path d="M0 0 C -36 -32, -86 -46, -126 -32 C -88 -6, -44 8, 0 0 Z" />
+      </g>
+    </g>
+    <g fill="#1f3a24" opacity="0.45">
+      <ellipse cx="560" cy="954" rx="64" ry="12" />
+      <ellipse cx="1610" cy="1002" rx="58" ry="11" />
+      <ellipse cx="1042" cy="952" rx="70" ry="13" />
+      <ellipse cx="-50" cy="1052" rx="76" ry="14" />
+    </g>
+  </g>
+</svg>

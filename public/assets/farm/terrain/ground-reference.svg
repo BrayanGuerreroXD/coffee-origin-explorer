@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ground-reference.svg
+  TEMPORARY PLACEHOLDER ARTWORK. Original illustration drawn for
+  coffee-origin-explorer while the real photographs of the farm do not exist.
+  Replace with real farm artwork or photography.
+
+  Layer: FarmGroundLayer (parallax 0.35). TRANSPARENT background on purpose.
+  The rolling ground mass of the farm: warmer and more saturated than the
+  ridges behind it, with bare-soil patches and terrace contours.
+  Content overscans the viewBox on every side.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000">
+  <defs>
+    <linearGradient id="gnMass" x1="0.1" y1="0" x2="0.3" y2="1">
+      <stop offset="0" stop-color="#7da362" />
+      <stop offset="0.28" stop-color="#5f8c4f" />
+      <stop offset="0.62" stop-color="#4c7a45" />
+      <stop offset="1" stop-color="#2f5733" />
+    </linearGradient>
+    <linearGradient id="gnKnoll" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#8bb06b" />
+      <stop offset="1" stop-color="#4c7a45" />
+    </linearGradient>
+    <linearGradient id="gnSoil" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a98763" />
+      <stop offset="0.55" stop-color="#6f5238" />
+      <stop offset="1" stop-color="#4a3527" />
+    </linearGradient>
+    <linearGradient id="gnLip" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9dbd78" stop-opacity="0.9" />
+      <stop offset="1" stop-color="#9dbd78" stop-opacity="0" />
+    </linearGradient>
+    <linearGradient id="gnBase" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2f5733" stop-opacity="0" />
+      <stop offset="1" stop-color="#1f3a24" stop-opacity="0.9" />
+    </linearGradient>
+  </defs>
+
+  <!-- ============ MAIN GROUND MASS ============ -->
+  <path
+    d="M-400 604
+       C -230 556, -60 536, 128 566
+       C 270 588, 360 560, 486 512
+       C 610 466, 720 452, 812 448
+       C 912 444, 990 476, 1064 502
+       C 1156 534, 1240 500, 1332 474
+       C 1440 444, 1540 468, 1648 508
+       C 1760 550, 1900 546, 2000 516
+       L 2000 1400 L -400 1400 Z"
+    fill="url(#gnMass)"
+  />
+
+  <!-- sunlit lip along the whole skyline of the ground mass -->
+  <path
+    d="M-400 604
+       C -230 556, -60 536, 128 566
+       C 270 588, 360 560, 486 512
+       C 610 466, 720 452, 812 448
+       C 912 444, 990 476, 1064 502
+       C 1156 534, 1240 500, 1332 474
+       C 1440 444, 1540 468, 1648 508
+       C 1760 550, 1900 546, 2000 516
+       L 2000 616 L -400 704 Z"
+    fill="url(#gnLip)"
+    opacity="0.75"
+  />
+
+  <!-- ============ ROLLING KNOLLS — read as separate spurs of the hill ============ -->
+  <g>
+    <!-- left spur, behind the drying deck area -->
+    <path
+      d="M-400 748 C -220 690, -40 668, 160 700 C 330 728, 430 704, 540 668
+         C 470 780, 300 860, 100 900 C -80 936, -280 940, -400 926 Z"
+      fill="url(#gnKnoll)"
+      opacity="0.85"
+    />
+    <!-- centre spur, under the beneficiadero -->
+    <path
+      d="M420 742 C 560 668, 720 628, 880 630 C 1030 632, 1140 672, 1230 728
+         C 1130 836, 950 900, 760 906 C 590 912, 470 848, 420 742 Z"
+      fill="#5f8c4f"
+      opacity="0.7"
+    />
+    <!-- right spur, under the farmhouse -->
+    <path
+      d="M1180 660 C 1330 606, 1500 592, 1680 616 C 1840 638, 1940 672, 2000 704
+         C 1960 828, 1800 912, 1600 936 C 1420 958, 1260 908, 1180 800 Z"
+      fill="url(#gnKnoll)"
+      opacity="0.72"
+    />
+  </g>
+
+  <!-- ============ BARE SOIL PATCHES ============ -->
+  <g>
+    <!-- broad worked slope, lower centre-left -->
+    <path
+      d="M-120 830 C 90 786, 330 780, 540 812 C 700 836, 790 880, 830 930
+         C 700 990, 470 1030, 240 1022 C 40 1016, -130 966, -220 902 Z"
+      fill="url(#gnSoil)"
+      opacity="0.55"
+    />
+    <!-- small worked terrace near the house -->
+    <path
+      d="M1130 802 C 1300 766, 1490 764, 1660 794 C 1790 816, 1880 852, 1930 890
+         C 1800 946, 1580 980, 1380 968 C 1230 958, 1140 900, 1130 802 Z"
+      fill="url(#gnSoil)"
+      opacity="0.45"
+    />
+    <!-- upper clearing, kept low-contrast so distance still reads -->
+    <path
+      d="M556 540 C 660 508, 790 498, 900 512 C 980 522, 1030 546, 1050 572
+         C 950 606, 800 620, 668 606 C 590 598, 552 574, 556 540 Z"
+      fill="#a98763"
+      opacity="0.22"
+    />
+  </g>
+
+  <!-- ============ TERRACE CONTOURS ============ -->
+  <g stroke="#2f5733" stroke-opacity="0.34" stroke-width="3.5" stroke-linecap="round" fill="none">
+    <path d="M-420 668 C -180 620, 90 600, 330 628 C 470 644, 560 620, 660 580" />
+    <path d="M700 566 C 830 524, 980 524, 1110 566 C 1240 608, 1380 592, 1520 560 C 1680 524, 1880 536, 2020 572" />
+    <path d="M-420 760 C -140 700, 160 676, 440 712 C 640 738, 790 706, 930 660" />
+    <path d="M980 668 C 1130 622, 1300 616, 1470 648 C 1640 680, 1860 676, 2020 644" />
+    <path d="M-420 876 C -120 810, 220 786, 560 826 C 800 854, 980 820, 1140 764" />
+    <path d="M1200 786 C 1380 738, 1600 734, 1800 766 C 1920 786, 1990 806, 2020 822" />
+    <path d="M-420 992 C -100 924, 280 900, 660 942 C 930 972, 1140 940, 1320 884" />
+    <path d="M1380 906 C 1560 862, 1780 862, 2020 900" />
+  </g>
+
+  <g stroke="#9dbd78" stroke-opacity="0.34" stroke-width="2" stroke-linecap="round" fill="none">
+    <path d="M-420 660 C -180 612, 90 592, 330 620 C 470 636, 560 612, 660 572" />
+    <path d="M-420 752 C -140 692, 160 668, 440 704 C 640 730, 790 698, 930 652" />
+    <path d="M-420 868 C -120 802, 220 778, 560 818 C 800 846, 980 812, 1140 756" />
+    <path d="M980 660 C 1130 614, 1300 608, 1470 640 C 1640 672, 1860 668, 2020 636" />
+  </g>
+
+  <!-- ============ SOFT SHADOW POOLS IN THE FOLDS ============ -->
+  <g fill="#1f3a24" opacity="0.26">
+    <path d="M330 640 C 430 686, 470 760, 430 836 C 380 782, 320 720, 250 684 Z" />
+    <path d="M1080 600 C 1170 646, 1216 720, 1186 796 C 1130 738, 1064 682, 996 646 Z" />
+    <path d="M700 908 C 820 936, 900 986, 930 1046 C 820 1030, 700 998, 606 950 Z" />
+    <path d="M-160 700 C -60 742, -10 810, -30 880 C -110 828, -200 780, -300 754 Z" />
+    <path d="M1560 650 C 1660 696, 1710 766, 1690 840 C 1610 788, 1520 742, 1420 716 Z" />
+  </g>
+
+  <!-- ============ STONE AND CLAY FLECKS, subtle handmade texture ============ -->
+  <g fill="#a98763" opacity="0.35">
+    <ellipse cx="180" cy="770" rx="16" ry="7" />
+    <ellipse cx="392" cy="812" rx="12" ry="5" />
+    <ellipse cx="612" cy="884" rx="18" ry="7" />
+    <ellipse cx="948" cy="836" rx="13" ry="6" />
+    <ellipse cx="1244" cy="900" rx="16" ry="7" />
+    <ellipse cx="1462" cy="836" rx="12" ry="5" />
+    <ellipse cx="86" cy="922" rx="20" ry="8" />
+    <ellipse cx="760" cy="972" rx="17" ry="7" />
+    <ellipse cx="1600" cy="944" rx="19" ry="8" />
+    <ellipse cx="1040" cy="686" rx="11" ry="5" />
+    <ellipse cx="520" cy="700" rx="10" ry="4" />
+  </g>
+  <g fill="#b4643a" opacity="0.3">
+    <ellipse cx="300" cy="902" rx="22" ry="9" />
+    <ellipse cx="1136" cy="806" rx="20" ry="8" />
+    <ellipse cx="856" cy="768" rx="15" ry="6" />
+    <ellipse cx="1680" cy="880" rx="24" ry="9" />
+    <ellipse cx="-40" cy="836" rx="22" ry="9" />
+  </g>
+
+  <!-- deep base so the bottom edge never opens a gap under parallax -->
+  <rect x="-400" y="1000" width="2400" height="400" fill="#2f5733" />
+  <rect x="-400" y="900" width="2400" height="200" fill="url(#gnBase)" />
+</svg>

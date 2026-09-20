@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  secado-reference.svg — point 4, "El secado".
+  TEMPORARY PLACEHOLDER ARTWORK standing in for a photograph that does not
+  exist yet. Original illustration drawn for coffee-origin-explorer.
+  It carries a visible "REFERENCIA" ribbon so it is never mistaken for a real
+  photograph of the family's farm. Replace with a real photo (WebP/AVIF).
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <linearGradient id="seSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#bcd8dd" />
+      <stop offset="0.55" stop-color="#e2e4dc" />
+      <stop offset="1" stop-color="#f2e6d2" />
+    </linearGradient>
+    <radialGradient id="seSun" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#fbf6ee" />
+      <stop offset="0.35" stop-color="#f6e8cd" />
+      <stop offset="1" stop-color="#e8a33d" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="seHill" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0" stop-color="#9ab7a2" />
+      <stop offset="0.5" stop-color="#7da362" />
+      <stop offset="1" stop-color="#4c7a45" />
+    </linearGradient>
+    <linearGradient id="seDeck" x1="0.1" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#e6d8c2" />
+      <stop offset="0.5" stop-color="#c9b18f" />
+      <stop offset="1" stop-color="#a98763" />
+    </linearGradient>
+    <linearGradient id="seBeans" x1="0" y1="0" x2="0.2" y2="1">
+      <stop offset="0" stop-color="#f0e2c6" />
+      <stop offset="0.5" stop-color="#dcc79f" />
+      <stop offset="1" stop-color="#bda379" />
+    </linearGradient>
+    <linearGradient id="seCover" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0" stop-color="#eaf3f3" stop-opacity="0.8" />
+      <stop offset="1" stop-color="#cfe3e6" stop-opacity="0.45" />
+    </linearGradient>
+  </defs>
+
+  <!-- sky and midday sun -->
+  <rect width="1200" height="800" fill="url(#seSky)" />
+  <circle cx="900" cy="112" r="200" fill="url(#seSun)" />
+  <circle cx="900" cy="112" r="58" fill="#fbf6ee" />
+  <g stroke="#f6e8cd" stroke-width="7" stroke-linecap="round" opacity="0.75">
+    <path d="M900 8 L 900 -26" />
+    <path d="M1004 112 L 1042 112" />
+    <path d="M796 112 L 758 112" />
+    <path d="M974 38 L 1000 12" />
+    <path d="M826 38 L 800 12" />
+    <path d="M974 186 L 1000 212" />
+    <path d="M826 186 L 800 212" />
+  </g>
+
+  <!-- distant hills -->
+  <path d="M-40 300 L 180 234 L 380 286 L 600 222 L 820 278 L 1040 232 L 1240 286 L 1240 420 L -40 420 Z" fill="#c2d6d6" />
+  <path d="M-40 366 L 220 300 L 460 352 L 700 296 L 940 348 L 1240 306 L 1240 480 L -40 480 Z" fill="url(#seHill)" opacity="0.85" />
+  <rect x="-40" y="300" width="1280" height="150" fill="#f2e6d2" opacity="0.35" />
+
+  <!-- grass around the deck -->
+  <path d="M-40 452 C 160 418, 420 406, 660 420 C 900 434, 1080 424, 1240 440 L 1240 840 L -40 840 Z" fill="#4c7a45" />
+  <g stroke="#2f5733" stroke-opacity="0.6" stroke-width="12" stroke-dasharray="3 14" stroke-linecap="round" fill="none">
+    <path d="M-40 486 C 200 452, 480 442, 760 456" />
+    <path d="M840 462 C 1000 452, 1120 452, 1240 462" />
+  </g>
+
+  <!-- ============ THE DRYING DECK IN PERSPECTIVE ============ -->
+  <g>
+    <!-- shadow -->
+    <path d="M110 700 L 1090 700 L 1160 790 L 40 790 Z" fill="#1f3a24" opacity="0.35" />
+
+    <!-- slab top -->
+    <path d="M300 470 L 900 470 L 1130 736 L 70 736 Z" fill="url(#seDeck)" />
+    <!-- front lip -->
+    <path d="M70 736 L 1130 736 L 1130 780 L 70 780 Z" fill="#8a6b4c" />
+    <path d="M70 736 L 1130 736 L 1130 750 L 70 750 Z" fill="#6f5238" />
+
+    <!-- beans spread in raked bands, wider as they come forward -->
+    <g fill="url(#seBeans)">
+      <path d="M318 490 L 882 490 L 898 520 L 302 520 Z" />
+      <path d="M296 542 L 904 542 L 926 580 L 274 580 Z" />
+      <path d="M268 602 L 932 602 L 960 648 L 240 648 Z" />
+      <path d="M234 670 L 966 670 L 1000 722 L 200 722 Z" />
+    </g>
+    <!-- rake furrows -->
+    <g stroke="#bda379" stroke-width="4" opacity="0.9">
+      <path d="M310 504 L 890 504" />
+      <path d="M286 560 L 914 560" />
+      <path d="M254 624 L 946 624" />
+      <path d="M218 694 L 982 694" />
+    </g>
+    <g stroke="#f0e2c6" stroke-width="3" opacity="0.8">
+      <path d="M312 496 L 890 496" />
+      <path d="M288 550 L 914 550" />
+      <path d="M256 612 L 946 612" />
+      <path d="M220 680 L 982 680" />
+    </g>
+    <!-- individual beans catching light along the near edge -->
+    <g fill="#f0e2c6">
+      <ellipse cx="300" cy="706" rx="12" ry="7" />
+      <ellipse cx="368" cy="714" rx="13" ry="7" />
+      <ellipse cx="452" cy="704" rx="12" ry="7" />
+      <ellipse cx="540" cy="716" rx="14" ry="8" />
+      <ellipse cx="636" cy="706" rx="12" ry="7" />
+      <ellipse cx="728" cy="716" rx="13" ry="7" />
+      <ellipse cx="820" cy="704" rx="12" ry="7" />
+      <ellipse cx="908" cy="714" rx="13" ry="7" />
+    </g>
+    <g stroke="#a98763" stroke-width="2" opacity="0.7">
+      <path d="M294 706 L 306 706" />
+      <path d="M362 714 L 374 714" />
+      <path d="M446 704 L 458 704" />
+      <path d="M534 716 L 546 716" />
+      <path d="M630 706 L 642 706" />
+      <path d="M722 716 L 734 716" />
+      <path d="M814 704 L 826 704" />
+      <path d="M902 714 L 914 714" />
+    </g>
+
+    <!-- rolling cover (marquesina) half pushed back over the top band -->
+    <g>
+      <path d="M300 470 L 900 470 L 926 500 L 276 500 Z" fill="url(#seCover)" />
+      <g stroke="#6f5238" stroke-width="6" stroke-linecap="round">
+        <path d="M300 470 L 300 428" />
+        <path d="M600 470 L 600 424" />
+        <path d="M900 470 L 900 428" />
+      </g>
+      <path d="M288 428 L 912 428 L 930 446 L 270 446 Z" fill="#8a6b4c" />
+      <path d="M288 428 L 912 428 L 912 436 L 288 436 Z" fill="#4a3527" />
+      <g stroke="#a98763" stroke-width="4" opacity="0.7">
+        <path d="M300 440 L 926 440" />
+      </g>
+    </g>
+  </g>
+
+  <!-- wooden rake resting on the beans -->
+  <g>
+    <path d="M1042 430 L 966 700" stroke="#6f5238" stroke-width="14" stroke-linecap="round" />
+    <path d="M1044 426 L 972 690" stroke="#a98763" stroke-width="5" stroke-linecap="round" />
+    <path d="M940 692 L 1042 668 L 1050 700 L 948 724 Z" fill="#6f5238" />
+    <g stroke="#4a3527" stroke-width="5">
+      <path d="M956 700 L 960 722" />
+      <path d="M982 694 L 986 716" />
+      <path d="M1008 688 L 1012 710" />
+      <path d="M1034 682 L 1038 704" />
+    </g>
+  </g>
+
+  <!-- a sack waiting at the downhill corner, human scale for the deck -->
+  <g transform="translate(920,10)">
+    <ellipse cx="150" cy="776" rx="86" ry="16" fill="#1f3a24" opacity="0.3" />
+    <path d="M110 772 c -18 -8 -20 -54 -2 -66 c 16 -12 44 -12 58 2 c 16 16 12 58 -8 64 c -14 6 -34 4 -48 0 Z" fill="#c9b18f" />
+    <path d="M112 708 q 26 -14 52 0 l -8 14 q -18 -8 -38 0 Z" fill="#8a6b4c" />
+    <g fill="#e0cdae">
+      <ellipse cx="200" cy="772" rx="14" ry="8" />
+      <ellipse cx="178" cy="786" rx="11" ry="6" />
+    </g>
+  </g>
+
+  <!-- ============ PROVISIONAL MARKERS ============ -->
+  <rect x="10" y="10" width="1180" height="780" fill="none" stroke="#fbf6ee" stroke-opacity="0.55" stroke-width="4" stroke-dasharray="18 14" />
+  <g>
+    <path d="M916 0 L 1200 284 L 1200 142 L 1058 0 Z" fill="#c0392b" />
+    <path d="M916 0 L 1200 284 L 1200 258 L 942 0 Z" fill="#8f2a1f" opacity="0.5" />
+    <text x="1098" y="112" transform="rotate(45 1098 112)" text-anchor="middle" fill="#fbf6ee" font-family="Verdana, Geneva, sans-serif" font-size="28" font-weight="bold" letter-spacing="2">REFERENCIA</text>
+  </g>
+  <g>
+    <rect x="34" y="722" width="430" height="46" rx="23" fill="#2b1e16" opacity="0.72" />
+    <text x="60" y="752" fill="#fbf6ee" font-family="Verdana, Geneva, sans-serif" font-size="22">Ilustración provisional · no es la finca</text>
+  </g>
+</svg>

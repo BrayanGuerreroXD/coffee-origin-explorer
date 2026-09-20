@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  cultivo-reference.svg — point 1, "El cultivo".
+  TEMPORARY PLACEHOLDER ARTWORK standing in for a photograph that does not
+  exist yet. Original illustration drawn for coffee-origin-explorer.
+  It carries a visible "REFERENCIA" ribbon so it is never mistaken for a real
+  photograph of the family's farm. Replace with a real photo (WebP/AVIF).
+  Frame is 3:2, the shape the future photograph will have.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <linearGradient id="cuSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#bcd8dd" />
+      <stop offset="0.6" stop-color="#d8e4e0" />
+      <stop offset="1" stop-color="#f2e6d2" />
+    </linearGradient>
+    <linearGradient id="cuFar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c2d6d6" />
+      <stop offset="1" stop-color="#aec6c2" />
+    </linearGradient>
+    <linearGradient id="cuMid" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9ab7a2" />
+      <stop offset="1" stop-color="#7aa086" />
+    </linearGradient>
+    <linearGradient id="cuHill" x1="0.1" y1="0" x2="0.4" y2="1">
+      <stop offset="0" stop-color="#7da362" />
+      <stop offset="0.45" stop-color="#4c7a45" />
+      <stop offset="1" stop-color="#2f5733" />
+    </linearGradient>
+    <linearGradient id="cuLeaf" x1="0" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#4c7a45" />
+      <stop offset="0.6" stop-color="#2f5733" />
+      <stop offset="1" stop-color="#1f3a24" />
+    </linearGradient>
+    <linearGradient id="cuLeafLit" x1="0" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#7da362" />
+      <stop offset="1" stop-color="#4c7a45" />
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="800" fill="url(#cuSky)" />
+  <circle cx="930" cy="120" r="140" fill="#f7edd6" opacity="0.5" />
+  <circle cx="930" cy="120" r="46" fill="#f6e8cd" />
+
+  <!-- distant ridges -->
+  <path d="M-40 300 L 150 218 L 300 268 L 470 190 L 640 254 L 810 196 L 980 250 L 1240 210 L 1240 420 L -40 420 Z" fill="url(#cuFar)" />
+  <path d="M-40 372 L 180 300 L 380 350 L 590 288 L 800 344 L 1010 296 L 1240 348 L 1240 500 L -40 500 Z" fill="url(#cuMid)" />
+  <rect x="-40" y="300" width="1280" height="140" fill="#f2e6d2" opacity="0.35" />
+
+  <!-- the planted hillside -->
+  <path d="M-40 470 C 140 412, 360 392, 560 412 C 760 432, 940 404, 1240 428 L 1240 840 L -40 840 Z" fill="url(#cuHill)" />
+  <path d="M-40 470 C 140 412, 360 392, 560 412 C 760 432, 940 404, 1240 428 L 1240 470 L -40 520 Z" fill="#9dbd78" opacity="0.55" />
+
+  <!-- contour rows of coffee, receding -->
+  <g stroke-linecap="round" fill="none">
+    <g stroke="#2f5733" opacity="0.9">
+      <path d="M-40 498 C 160 448, 400 430, 640 448" stroke-width="16" stroke-dasharray="3 18" />
+      <path d="M700 456 C 880 432, 1060 434, 1240 456" stroke-width="16" stroke-dasharray="3 18" />
+      <path d="M-40 556 C 180 498, 450 478, 720 500" stroke-width="20" stroke-dasharray="3 22" />
+      <path d="M780 506 C 940 484, 1090 486, 1240 508" stroke-width="20" stroke-dasharray="3 22" />
+      <path d="M-40 628 C 200 560, 500 538, 800 564" stroke-width="25" stroke-dasharray="4 27" />
+      <path d="M860 572 C 1020 550, 1140 552, 1240 570" stroke-width="25" stroke-dasharray="4 27" />
+      <path d="M-40 716 C 230 634, 560 608, 900 640" stroke-width="31" stroke-dasharray="4 33" />
+      <path d="M960 650 C 1090 632, 1180 632, 1240 644" stroke-width="31" stroke-dasharray="4 33" />
+    </g>
+    <g stroke="#7da362" opacity="0.7" transform="translate(-5,-8)">
+      <path d="M-40 498 C 160 448, 400 430, 640 448" stroke-width="7" stroke-dasharray="2 19" />
+      <path d="M-40 556 C 180 498, 450 478, 720 500" stroke-width="8" stroke-dasharray="2 23" />
+      <path d="M-40 628 C 200 560, 500 538, 800 564" stroke-width="10" stroke-dasharray="2 28" />
+      <path d="M-40 716 C 230 634, 560 608, 900 640" stroke-width="12" stroke-dasharray="3 34" />
+      <path d="M860 572 C 1020 550, 1140 552, 1240 570" stroke-width="10" stroke-dasharray="2 28" />
+    </g>
+  </g>
+
+  <!-- a shade tree breaking the rows -->
+  <g>
+    <rect x="322" y="404" width="12" height="76" fill="#4a3527" />
+    <path d="M328 418 C 262 414, 228 376, 258 340 C 245 300, 284 272, 324 286 C 356 256, 414 268, 422 308 C 468 317, 476 370, 436 393 C 415 424, 362 431, 328 418 Z" fill="url(#cuLeaf)" />
+  </g>
+
+  <!-- the near coffee plant: the subject of the frame -->
+  <g transform="translate(300,800)">
+    <path d="M0 0 C -6 -120, -4 -230, 8 -330" stroke="#4a3527" stroke-width="20" stroke-linecap="round" fill="none" />
+    <g stroke="#4a3527" stroke-width="11" stroke-linecap="round" fill="none">
+      <path d="M2 -110 C -60 -130, -120 -152, -180 -166" />
+      <path d="M4 -180 C 62 -200, 126 -218, 190 -228" />
+      <path d="M6 -250 C -50 -270, -108 -288, -160 -296" />
+      <path d="M8 -310 C 56 -328, 110 -342, 160 -348" />
+    </g>
+    <g fill="url(#cuLeaf)">
+      <ellipse cx="-56" cy="-136" rx="62" ry="24" transform="rotate(16 -56 -136)" />
+      <ellipse cx="-136" cy="-160" rx="58" ry="22" transform="rotate(12 -136 -160)" />
+      <ellipse cx="72" cy="-206" rx="60" ry="23" transform="rotate(-16 72 -206)" />
+      <ellipse cx="156" cy="-228" rx="54" ry="21" transform="rotate(-12 156 -228)" />
+      <ellipse cx="-58" cy="-276" rx="58" ry="22" transform="rotate(18 -58 -276)" />
+      <ellipse cx="-134" cy="-298" rx="50" ry="19" transform="rotate(12 -134 -298)" />
+      <ellipse cx="66" cy="-332" rx="54" ry="21" transform="rotate(-18 66 -332)" />
+      <ellipse cx="136" cy="-350" rx="46" ry="18" transform="rotate(-12 136 -350)" />
+    </g>
+    <g fill="url(#cuLeafLit)">
+      <ellipse cx="-30" cy="-96" rx="52" ry="20" transform="rotate(-8 -30 -96)" />
+      <ellipse cx="40" cy="-152" rx="50" ry="19" transform="rotate(12 40 -152)" />
+      <ellipse cx="-42" cy="-216" rx="48" ry="18" transform="rotate(-10 -42 -216)" />
+      <ellipse cx="44" cy="-286" rx="46" ry="18" transform="rotate(14 44 -286)" />
+      <ellipse cx="-26" cy="-360" rx="42" ry="16" transform="rotate(-8 -26 -360)" />
+    </g>
+    <!-- cherries in mixed ripeness along the branches -->
+    <g>
+      <circle cx="-92" cy="-146" r="11" fill="#c0392b" />
+      <circle cx="-66" cy="-132" r="10" fill="#e05a3f" />
+      <circle cx="-116" cy="-156" r="9" fill="#4c7a45" />
+      <circle cx="104" cy="-214" r="11" fill="#c0392b" />
+      <circle cx="132" cy="-224" r="9" fill="#e8a33d" />
+      <circle cx="78" cy="-200" r="9" fill="#4c7a45" />
+      <circle cx="-88" cy="-284" r="10" fill="#c0392b" />
+      <circle cx="-114" cy="-294" r="8" fill="#e8a33d" />
+      <circle cx="96" cy="-336" r="9" fill="#c0392b" />
+      <circle cx="120" cy="-344" r="7" fill="#4c7a45" />
+      <g fill="#fbf6ee" opacity="0.5">
+        <circle cx="-95" cy="-150" r="3" />
+        <circle cx="101" cy="-218" r="3" />
+        <circle cx="-91" cy="-288" r="2.5" />
+      </g>
+    </g>
+  </g>
+
+  <!-- warm soil at the very bottom -->
+  <path d="M-40 762 C 200 726, 520 716, 820 738 C 1000 750, 1130 766, 1240 782 L 1240 840 L -40 840 Z" fill="#6f5238" opacity="0.85" />
+  <g fill="#a98763" opacity="0.5">
+    <ellipse cx="120" cy="782" rx="30" ry="9" />
+    <ellipse cx="540" cy="770" rx="26" ry="8" />
+    <ellipse cx="940" cy="784" rx="32" ry="10" />
+  </g>
+
+  <!-- ============ PROVISIONAL MARKERS ============ -->
+  <rect x="10" y="10" width="1180" height="780" fill="none" stroke="#fbf6ee" stroke-opacity="0.55" stroke-width="4" stroke-dasharray="18 14" />
+  <g>
+    <path d="M916 0 L 1200 284 L 1200 142 L 1058 0 Z" fill="#c0392b" />
+    <path d="M916 0 L 1200 284 L 1200 258 L 942 0 Z" fill="#8f2a1f" opacity="0.5" />
+    <text x="1098" y="112" transform="rotate(45 1098 112)" text-anchor="middle" fill="#fbf6ee" font-family="Verdana, Geneva, sans-serif" font-size="28" font-weight="bold" letter-spacing="2">REFERENCIA</text>
+  </g>
+  <g>
+    <rect x="34" y="722" width="430" height="46" rx="23" fill="#2b1e16" opacity="0.72" />
+    <text x="60" y="752" fill="#fbf6ee" font-family="Verdana, Geneva, sans-serif" font-size="22">Ilustración provisional · no es la finca</text>
+  </g>
+</svg>

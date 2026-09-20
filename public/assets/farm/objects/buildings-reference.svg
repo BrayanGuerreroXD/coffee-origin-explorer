@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  buildings-reference.svg
+  TEMPORARY PLACEHOLDER ARTWORK. Original illustration drawn for
+  coffee-origin-explorer while the real photographs of the farm do not exist.
+  Replace with real farm artwork or photography.
+
+  Layer: BuildingsLayer (parallax 0.65). TRANSPARENT background on purpose.
+  Contents: the beneficiadero with its fermentation tanks and washing channel
+  (centre-left), the open drying deck / marquesina (lower left) and the small
+  farmhouse with its veranda (centre-right). Nothing heavy is drawn on the
+  five marker spots. Edge props overscan the viewBox.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000">
+  <defs>
+    <linearGradient id="bdWallLit" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fbf6ee" />
+      <stop offset="1" stop-color="#e6d8c2" />
+    </linearGradient>
+    <linearGradient id="bdWallShade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#d6c4aa" />
+      <stop offset="1" stop-color="#b9a489" />
+    </linearGradient>
+    <linearGradient id="bdRoof" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0" stop-color="#c97a4a" />
+      <stop offset="0.5" stop-color="#b4643a" />
+      <stop offset="1" stop-color="#8d4a2b" />
+    </linearGradient>
+    <linearGradient id="bdRoofZinc" x1="0" y1="0" x2="0.2" y2="1">
+      <stop offset="0" stop-color="#a98763" />
+      <stop offset="0.5" stop-color="#8a6b4c" />
+      <stop offset="1" stop-color="#6f5238" />
+    </linearGradient>
+    <linearGradient id="bdDeck" x1="0" y1="0" x2="0.25" y2="1">
+      <stop offset="0" stop-color="#e0cdae" />
+      <stop offset="0.6" stop-color="#c9b18f" />
+      <stop offset="1" stop-color="#a98763" />
+    </linearGradient>
+    <linearGradient id="bdWater" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#cfe3e6" />
+      <stop offset="1" stop-color="#9dc2c4" />
+    </linearGradient>
+  </defs>
+
+  <!-- ==================================================================
+       BENEFICIADERO — centre-left, just below the (0.55, 0.49) marker
+       ================================================================== -->
+  <g>
+    <ellipse cx="712" cy="672" rx="150" ry="26" fill="#1f3a24" opacity="0.35" />
+
+    <!-- washing channel and tanks in front of the shed -->
+    <g>
+      <path d="M598 664 L 840 664 L 830 690 L 606 690 Z" fill="#6f5238" />
+      <path d="M604 668 L 834 668 L 826 684 L 612 684 Z" fill="url(#bdWater)" />
+      <path d="M636 670 q 18 8 36 0 q 18 8 36 0 q 18 8 36 0 q 18 8 36 0" stroke="#fbf6ee" stroke-opacity="0.6" stroke-width="2" fill="none" />
+
+      <rect x="616" y="616" width="70" height="50" rx="5" fill="#a98763" />
+      <rect x="616" y="616" width="70" height="13" rx="5" fill="#6f5238" />
+      <rect x="623" y="632" width="56" height="28" rx="3" fill="url(#bdWater)" opacity="0.85" />
+
+      <rect x="698" y="620" width="70" height="46" rx="5" fill="#a98763" />
+      <rect x="698" y="620" width="70" height="12" rx="5" fill="#6f5238" />
+      <rect x="705" y="635" width="56" height="25" rx="3" fill="url(#bdWater)" opacity="0.85" />
+
+      <rect x="780" y="626" width="56" height="40" rx="5" fill="#8a6b4c" />
+      <rect x="780" y="626" width="56" height="11" rx="5" fill="#4a3527" />
+    </g>
+
+    <!-- shed body -->
+    <rect x="620" y="556" width="190" height="76" fill="url(#bdWallLit)" />
+    <rect x="620" y="556" width="46" height="76" fill="url(#bdWallShade)" />
+    <!-- roof -->
+    <path d="M604 560 L 714 508 L 828 560 L 810 572 L 714 526 L 620 572 Z" fill="url(#bdRoofZinc)" />
+    <path d="M604 560 L 828 560 L 828 574 L 604 574 Z" fill="#6f5238" />
+    <g stroke="#4a3527" stroke-opacity="0.45" stroke-width="1.6">
+      <path d="M636 566 L 700 534" />
+      <path d="M664 570 L 716 544" />
+      <path d="M760 542 L 800 562" />
+      <path d="M730 532 L 786 560" />
+    </g>
+    <!-- openings -->
+    <rect x="690" y="580" width="44" height="52" fill="#2b1e16" opacity="0.8" />
+    <rect x="752" y="584" width="34" height="26" fill="#4a3527" opacity="0.75" />
+    <rect x="642" y="586" width="20" height="22" fill="#4a3527" opacity="0.6" />
+    <!-- hopper / tolva on the uphill side -->
+    <path d="M818 574 L 872 574 L 860 616 L 830 616 Z" fill="#8a6b4c" />
+    <rect x="814" y="566" width="62" height="10" rx="3" fill="#4a3527" />
+    <rect x="838" y="616" width="14" height="46" fill="#6f5238" />
+  </g>
+
+  <!-- ==================================================================
+       DRYING DECK / MARQUESINA — lower left, beside the (0.16, 0.11) marker
+       ================================================================== -->
+  <g>
+    <ellipse cx="450" cy="930" rx="196" ry="30" fill="#1f3a24" opacity="0.32" />
+
+    <!-- raised deck slab in perspective -->
+    <path d="M318 872 L 604 848 L 636 906 L 336 936 Z" fill="url(#bdDeck)" />
+    <path d="M318 872 L 336 936 L 328 952 L 310 888 Z" fill="#8a6b4c" />
+    <path d="M336 936 L 636 906 L 630 924 L 330 954 Z" fill="#6f5238" />
+    <!-- beans spread in bands, raked -->
+    <g stroke="#a98763" stroke-width="5" stroke-linecap="round" opacity="0.85" fill="none">
+      <path d="M340 880 L 592 858" />
+      <path d="M346 894 L 600 872" />
+      <path d="M352 908 L 608 886" />
+      <path d="M358 922 L 616 900" />
+    </g>
+    <g stroke="#e0cdae" stroke-width="2" stroke-linecap="round" opacity="0.8" fill="none">
+      <path d="M340 877 L 592 855" />
+      <path d="M352 905 L 608 883" />
+    </g>
+    <!-- rolling roof rails and a half-open cover -->
+    <g>
+      <rect x="326" y="836" width="292" height="7" rx="3" fill="#6f5238" transform="rotate(-4.8 326 836)" />
+      <path d="M330 834 L 470 822 L 474 800 L 334 812 Z" fill="#cfe3e6" opacity="0.55" />
+      <path d="M330 834 L 470 822 L 474 800 L 334 812 Z" fill="none" stroke="#6f5238" stroke-width="3" />
+      <g stroke="#4a3527" stroke-width="4" stroke-linecap="round">
+        <path d="M330 838 L 330 880" />
+        <path d="M470 826 L 470 866" />
+        <path d="M604 848 L 606 884" />
+      </g>
+    </g>
+    <!-- wooden rake leaning on the deck -->
+    <g stroke="#6f5238" stroke-width="5" stroke-linecap="round">
+      <path d="M652 828 L 628 910" />
+    </g>
+    <path d="M642 824 L 676 820 L 676 832 L 642 836 Z" fill="#4a3527" />
+    <!-- sacks waiting at the downhill corner of the deck, well clear of the
+         marker that lands at (256, 890) -->
+    <g>
+      <ellipse cx="736" cy="972" rx="72" ry="13" fill="#1f3a24" opacity="0.3" />
+      <path d="M700 952 c -16 -6 -18 -46 -2 -58 c 14 -10 38 -10 50 2 c 14 14 10 50 -6 56 c -12 6 -30 4 -42 0 Z" fill="#c9b18f" />
+      <path d="M702 896 q 22 -12 44 0 l -6 12 q -16 -8 -32 0 Z" fill="#8a6b4c" />
+      <path d="M756 960 c -14 -6 -16 -40 -2 -50 c 12 -8 32 -8 42 2 c 12 12 8 42 -6 48 c -10 4 -24 4 -34 0 Z" fill="#b9a489" />
+    </g>
+  </g>
+
+  <!-- ==================================================================
+       FARMHOUSE — centre-right, clear of the (0.82, 0.10) marker
+       ================================================================== -->
+  <g>
+    <ellipse cx="1132" cy="812" rx="142" ry="26" fill="#1f3a24" opacity="0.35" />
+
+    <!-- veranda deck -->
+    <path d="M1018 790 L 1246 790 L 1252 810 L 1012 810 Z" fill="#8a6b4c" />
+    <!-- body -->
+    <rect x="1036" y="700" width="190" height="92" fill="url(#bdWallLit)" />
+    <rect x="1036" y="700" width="44" height="92" fill="url(#bdWallShade)" />
+    <!-- clay-tile roof with generous eaves -->
+    <path d="M1010 706 L 1131 646 L 1252 706 L 1230 720 L 1131 671 L 1032 720 Z" fill="url(#bdRoof)" />
+    <path d="M1010 706 L 1252 706 L 1252 722 L 1010 722 Z" fill="#8d4a2b" />
+    <g stroke="#8d4a2b" stroke-opacity="0.55" stroke-width="2">
+      <path d="M1048 714 L 1120 678" />
+      <path d="M1074 718 L 1128 692" />
+      <path d="M1142 678 L 1210 712" />
+      <path d="M1140 692 L 1192 718" />
+    </g>
+    <!-- door and windows -->
+    <rect x="1112" y="736" width="40" height="56" rx="3" fill="#4a3527" />
+    <rect x="1118" y="742" width="28" height="50" fill="#2b1e16" opacity="0.7" />
+    <rect x="1172" y="740" width="34" height="30" rx="2" fill="#cfe3e6" />
+    <rect x="1172" y="740" width="34" height="30" rx="2" fill="none" stroke="#4a3527" stroke-width="3" />
+    <path d="M1189 740 L 1189 770" stroke="#4a3527" stroke-width="2" />
+    <rect x="1050" y="742" width="26" height="28" rx="2" fill="#6f5238" opacity="0.8" />
+    <!-- veranda posts -->
+    <g stroke="#6f5238" stroke-width="7" stroke-linecap="round">
+      <path d="M1026 722 L 1024 790" />
+      <path d="M1238 722 L 1240 790" />
+    </g>
+    <!-- potted geraniums on the veranda rail, a small handmade touch -->
+    <g>
+      <rect x="1060" y="776" width="18" height="14" rx="3" fill="#b4643a" />
+      <circle cx="1063" cy="772" r="5" fill="#4c7a45" />
+      <circle cx="1072" cy="770" r="5" fill="#2f5733" />
+      <circle cx="1068" cy="766" r="3" fill="#c0392b" />
+      <rect x="1196" y="776" width="18" height="14" rx="3" fill="#b4643a" />
+      <circle cx="1199" cy="772" r="5" fill="#4c7a45" />
+      <circle cx="1208" cy="770" r="5" fill="#2f5733" />
+      <circle cx="1204" cy="766" r="3" fill="#e8a33d" />
+    </g>
+    <!-- small store room attached downhill -->
+    <rect x="1230" y="742" width="86" height="52" fill="url(#bdWallShade)" />
+    <path d="M1220 748 L 1273 718 L 1326 748 L 1312 758 L 1273 736 L 1234 758 Z" fill="url(#bdRoofZinc)" />
+    <rect x="1220" y="748" width="106" height="12" fill="#6f5238" />
+    <rect x="1256" y="762" width="30" height="32" fill="#2b1e16" opacity="0.7" />
+  </g>
+
+  <!-- ==================================================================
+       EDGE PROPS — overscan so parallax never reveals an empty margin
+       ================================================================== -->
+  <g opacity="0.9">
+    <!-- outbuilding slipping off the left edge -->
+    <g>
+      <rect x="-190" y="700" width="170" height="70" fill="url(#bdWallShade)" />
+      <path d="M-210 706 L -105 660 L 0 706 L -16 718 L -105 678 L -194 718 Z" fill="url(#bdRoofZinc)" />
+      <rect x="-210" y="706" width="210" height="13" fill="#6f5238" />
+      <rect x="-140" y="726" width="34" height="44" fill="#2b1e16" opacity="0.6" />
+      <ellipse cx="-105" cy="774" rx="110" ry="18" fill="#1f3a24" opacity="0.3" />
+    </g>
+    <!-- water tank slipping off the right edge -->
+    <g>
+      <ellipse cx="1690" cy="726" rx="86" ry="18" fill="#1f3a24" opacity="0.3" />
+      <rect x="1614" y="646" width="152" height="74" rx="8" fill="#a98763" />
+      <rect x="1614" y="646" width="152" height="16" rx="8" fill="#6f5238" />
+      <rect x="1614" y="676" width="152" height="6" fill="#8a6b4c" />
+      <path d="M1600 664 L 1614 664 L 1614 672 L 1600 672 Z" fill="#4a3527" />
+    </g>
+    <!-- fence posts running off the bottom edge -->
+    <g stroke="#6f5238" stroke-width="8" stroke-linecap="round">
+      <path d="M-260 1000 L -266 1060" />
+      <path d="M-60 1020 L -66 1080" />
+      <path d="M1700 986 L 1706 1046" />
+      <path d="M1870 1000 L 1876 1060" />
+    </g>
+    <g stroke="#8a6b4c" stroke-width="4" stroke-linecap="round">
+      <path d="M-268 1018 L -58 1038" />
+      <path d="M1700 1002 L 1872 1016" />
+    </g>
+  </g>
+</svg>

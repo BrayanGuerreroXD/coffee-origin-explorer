@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  beneficio-reference.svg — point 3, "El beneficio".
+  TEMPORARY PLACEHOLDER ARTWORK standing in for a photograph that does not
+  exist yet. Original illustration drawn for coffee-origin-explorer.
+  It carries a visible "REFERENCIA" ribbon so it is never mistaken for a real
+  photograph of the family's farm. Replace with a real photo (WebP/AVIF).
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <linearGradient id="beWall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e6d8c2" />
+      <stop offset="1" stop-color="#c1ad92" />
+    </linearGradient>
+    <linearGradient id="beWallLit" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fbf6ee" />
+      <stop offset="1" stop-color="#e0cdae" />
+    </linearGradient>
+    <linearGradient id="beFloor" x1="0" y1="0" x2="0.2" y2="1">
+      <stop offset="0" stop-color="#a98763" />
+      <stop offset="0.5" stop-color="#8a6b4c" />
+      <stop offset="1" stop-color="#6f5238" />
+    </linearGradient>
+    <linearGradient id="beTank" x1="0" y1="0" x2="1" y2="0.2">
+      <stop offset="0" stop-color="#b9a489" />
+      <stop offset="0.45" stop-color="#d6c4aa" />
+      <stop offset="1" stop-color="#8a6b4c" />
+    </linearGradient>
+    <linearGradient id="beWater" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0" stop-color="#dff0f0" />
+      <stop offset="0.5" stop-color="#a8ccce" />
+      <stop offset="1" stop-color="#7aa7ab" />
+    </linearGradient>
+    <linearGradient id="beMachine" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d07c4f" />
+      <stop offset="0.5" stop-color="#b4643a" />
+      <stop offset="1" stop-color="#7f4224" />
+    </linearGradient>
+    <linearGradient id="beRoof" x1="0" y1="0" x2="0.2" y2="1">
+      <stop offset="0" stop-color="#8a6b4c" />
+      <stop offset="1" stop-color="#4a3527" />
+    </linearGradient>
+  </defs>
+
+  <!-- back wall of the shed, with daylight coming through the opening -->
+  <rect width="1200" height="800" fill="url(#beWall)" />
+  <rect x="-20" y="-20" width="1240" height="120" fill="url(#beRoof)" />
+  <g stroke="#2b1e16" stroke-opacity="0.35" stroke-width="5">
+    <path d="M60 100 L 60 480" />
+    <path d="M1140 100 L 1140 470" />
+    <path d="M-20 96 L 1220 96" />
+  </g>
+  <!-- opening onto the green hillside -->
+  <g>
+    <rect x="720" y="130" width="400" height="290" rx="6" fill="#4c7a45" />
+    <path d="M720 300 C 800 262, 900 250, 1000 264 C 1070 274, 1110 292, 1120 310 L 1120 420 L 720 420 Z" fill="#2f5733" />
+    <rect x="720" y="130" width="400" height="110" fill="#cfe3e6" />
+    <circle cx="1050" cy="184" r="34" fill="#f6e8cd" />
+    <g stroke="#1f3a24" stroke-opacity="0.5" stroke-width="10" stroke-dasharray="3 12" stroke-linecap="round" fill="none">
+      <path d="M730 330 C 820 300, 930 292, 1118 306" />
+      <path d="M730 372 C 830 340, 950 332, 1118 348" />
+    </g>
+    <rect x="720" y="130" width="400" height="290" rx="6" fill="none" stroke="#4a3527" stroke-width="12" />
+    <path d="M916 130 L 916 420" stroke="#4a3527" stroke-width="10" />
+  </g>
+
+  <!-- water pipe feeding the tanks -->
+  <g>
+    <path d="M-20 168 L 250 168 C 286 168, 300 186, 300 214 L 300 296" stroke="#6f5238" stroke-width="22" fill="none" stroke-linecap="round" />
+    <path d="M-20 162 L 250 162 C 280 162, 292 180, 292 208 L 292 292" stroke="#a98763" stroke-width="9" fill="none" stroke-linecap="round" />
+    <rect x="276" y="288" width="44" height="22" rx="6" fill="#4a3527" />
+    <!-- falling water -->
+    <path d="M286 310 C 282 360, 284 400, 292 440 C 300 400, 304 360, 306 310 Z" fill="url(#beWater)" opacity="0.85" />
+    <g fill="#dff0f0" opacity="0.7">
+      <circle cx="288" cy="452" r="7" />
+      <circle cx="308" cy="462" r="5" />
+      <circle cx="272" cy="466" r="4" />
+    </g>
+  </g>
+
+  <!-- ============ FERMENTATION TANKS ============ -->
+  <g>
+    <!-- left tank, filled with water and parchment -->
+    <path d="M150 440 L 470 440 L 446 640 L 174 640 Z" fill="url(#beTank)" />
+    <path d="M150 440 L 470 440 L 466 466 L 154 466 Z" fill="#6f5238" />
+    <path d="M166 476 L 454 476 L 434 626 L 186 626 Z" fill="url(#beWater)" />
+    <g fill="#e0cdae" opacity="0.8">
+      <ellipse cx="240" cy="516" rx="26" ry="9" />
+      <ellipse cx="320" cy="534" rx="30" ry="10" />
+      <ellipse cx="392" cy="512" rx="24" ry="8" />
+      <ellipse cx="278" cy="566" rx="32" ry="11" />
+      <ellipse cx="366" cy="580" rx="28" ry="9" />
+      <ellipse cx="216" cy="592" rx="26" ry="9" />
+      <ellipse cx="320" cy="606" rx="34" ry="11" />
+    </g>
+    <g stroke="#fbf6ee" stroke-opacity="0.6" stroke-width="3" fill="none">
+      <path d="M190 494 q 34 10 68 0 q 34 10 68 0 q 34 10 68 0 q 34 10 68 0" />
+    </g>
+    <path d="M150 440 L 470 440 L 446 640 L 174 640 Z" fill="none" stroke="#4a3527" stroke-width="9" />
+
+    <!-- right tank, draining -->
+    <path d="M520 452 L 790 452 L 770 630 L 540 630 Z" fill="url(#beTank)" />
+    <path d="M520 452 L 790 452 L 787 476 L 523 476 Z" fill="#6f5238" />
+    <path d="M534 486 L 776 486 L 760 618 L 550 618 Z" fill="#a98763" />
+    <g fill="#e0cdae">
+      <ellipse cx="596" cy="524" rx="30" ry="10" />
+      <ellipse cx="672" cy="540" rx="34" ry="11" />
+      <ellipse cx="730" cy="518" rx="26" ry="9" />
+      <ellipse cx="620" cy="570" rx="36" ry="12" />
+      <ellipse cx="704" cy="586" rx="30" ry="10" />
+      <ellipse cx="572" cy="598" rx="28" ry="9" />
+    </g>
+    <path d="M520 452 L 790 452 L 770 630 L 540 630 Z" fill="none" stroke="#4a3527" stroke-width="9" />
+  </g>
+
+  <!-- ============ DESPULPADORA (pulping machine) ============ -->
+  <g>
+    <ellipse cx="960" cy="712" rx="150" ry="26" fill="#2b1e16" opacity="0.35" />
+    <!-- hopper -->
+    <path d="M846 452 L 1082 452 L 1030 548 L 898 548 Z" fill="url(#beMachine)" />
+    <path d="M846 452 L 1082 452 L 1074 468 L 854 468 Z" fill="#7f4224" />
+    <g fill="#c0392b">
+      <circle cx="906" cy="482" r="15" />
+      <circle cx="948" cy="472" r="14" />
+      <circle cx="992" cy="482" r="15" />
+      <circle cx="1034" cy="474" r="13" />
+      <circle cx="928" cy="504" r="13" />
+      <circle cx="978" cy="508" r="14" />
+      <circle cx="1018" cy="500" r="12" />
+    </g>
+    <!-- body -->
+    <rect x="874" y="548" width="176" height="130" rx="10" fill="url(#beMachine)" />
+    <rect x="890" y="570" width="144" height="60" rx="6" fill="#7f4224" />
+    <rect x="890" y="570" width="144" height="60" rx="6" fill="none" stroke="#4a3527" stroke-width="5" />
+    <!-- flywheel and crank -->
+    <circle cx="1082" cy="616" r="60" fill="#6f5238" />
+    <circle cx="1082" cy="616" r="46" fill="#4a3527" />
+    <circle cx="1082" cy="616" r="12" fill="#a98763" />
+    <g stroke="#a98763" stroke-width="7" stroke-linecap="round">
+      <path d="M1082 574 L 1082 658" />
+      <path d="M1052 592 L 1112 640" />
+      <path d="M1112 592 L 1052 640" />
+    </g>
+    <path d="M1122 616 L 1160 590 L 1174 608" stroke="#4a3527" stroke-width="10" fill="none" stroke-linecap="round" />
+    <!-- legs -->
+    <g stroke="#4a3527" stroke-width="14" stroke-linecap="round">
+      <path d="M896 678 L 884 712" />
+      <path d="M1028 678 L 1040 712" />
+    </g>
+    <!-- chute pouring parchment out -->
+    <path d="M874 616 L 806 656 L 820 686 L 880 652 Z" fill="#8a6b4c" />
+    <g fill="#e0cdae">
+      <ellipse cx="800" cy="694" rx="24" ry="9" />
+      <ellipse cx="770" cy="710" rx="28" ry="10" />
+      <ellipse cx="812" cy="716" rx="22" ry="8" />
+    </g>
+  </g>
+
+  <!-- wet concrete floor -->
+  <path d="M-20 640 L 1220 630 L 1220 820 L -20 820 Z" fill="url(#beFloor)" />
+  <g stroke="#6f5238" stroke-opacity="0.5" stroke-width="5" fill="none">
+    <path d="M-20 690 L 1220 682" />
+    <path d="M-20 748 L 1220 740" />
+    <path d="M200 640 L 170 820" />
+    <path d="M620 636 L 600 820" />
+    <path d="M1010 632 L 1030 820" />
+  </g>
+  <g fill="#cfe3e6" opacity="0.35">
+    <ellipse cx="300" cy="712" rx="130" ry="26" />
+    <ellipse cx="640" cy="762" rx="160" ry="28" />
+    <ellipse cx="120" cy="784" rx="110" ry="22" />
+  </g>
+
+  <!-- ============ PROVISIONAL MARKERS ============ -->
+  <rect x="10" y="10" width="1180" height="780" fill="none" stroke="#fbf6ee" stroke-opacity="0.55" stroke-width="4" stroke-dasharray="18 14" />
+  <g>
+    <path d="M916 0 L 1200 284 L 1200 142 L 1058 0 Z" fill="#c0392b" />
+    <path d="M916 0 L 1200 284 L 1200 258 L 942 0 Z" fill="#8f2a1f" opacity="0.5" />
+    <text x="1098" y="112" transform="rotate(45 1098 112)" text-anchor="middle" fill="#fbf6ee" font-family="Verdana, Geneva, sans-serif" font-size="28" font-weight="bold" letter-spacing="2">REFERENCIA</text>
+  </g>
+  <g>
+    <rect x="34" y="722" width="430" height="46" rx="23" fill="#2b1e16" opacity="0.72" />
+    <text x="60" y="752" fill="#fbf6ee" font-family="Verdana, Geneva, sans-serif" font-size="22">Ilustración provisional · no es la finca</text>
+  </g>
+</svg>
