@@ -1,0 +1,167 @@
+/*
+ * Interactive points layer.
+ *
+ * The layer sits above the canvas and is transparent to the pointer; only the
+ * buttons capture input. Every colour comes from tokens.css; `--point-accent`
+ * is the per-point override coming from the config.
+ */
+
+.farm-points {
+  position: absolute;
+  inset: 0;
+  z-index: var(--z-points);
+  pointer-events: none;
+  will-change: transform;
+}
+
+.farm-point {
+  --point-hit: var(--point-hit-size);
+  --point-color: var(--point-accent, var(--color-cherry));
+
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: var(--point-hit);
+  height: var(--point-hit);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: transparent;
+  font-family: var(--font-body);
+  cursor: pointer;
+  pointer-events: auto;
+  -webkit-tap-highlight-color: transparent;
+  /* left/top place the hit area's centre on the projected point. */
+  transform: translate3d(calc(-50% + var(--point-dx, 0px)), calc(-50% + var(--point-dy, 0px)), 0);
+}
+
+/* Halo, dot and pulse share one grid cell so they stay concentric. */
+.farm-point__halo,
+.farm-point__dot,
+.farm-point__pulse {
+  grid-area: 1 / 1;
+  pointer-events: none;
+}
+
+.farm-point:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-full);
+}
+
+.farm-point__dot {
+  width: var(--point-dot-size);
+  height: var(--point-dot-size);
+  border-radius: var(--radius-full);
+  background: var(--point-color);
+  box-shadow:
+    0 0 0 2px var(--color-surface),
+    var(--shadow-soft);
+}
+
+.farm-point__halo {
+  width: calc(var(--point-dot-size) * 2.2);
+  height: calc(var(--point-dot-size) * 2.2);
+  border-radius: var(--radius-full);
+  background: radial-gradient(circle, var(--point-color) 0%, transparent 68%);
+  opacity: 0.28;
+  transition:
+    opacity var(--duration-hover) var(--ease-out),
+    transform var(--duration-hover) var(--ease-out);
+}
+
+.farm-point[data-state='hover'] .farm-point__halo,
+.farm-point[data-state='focus'] .farm-point__halo,
+.farm-point[data-state='active'] .farm-point__halo {
+  opacity: 0.6;
+  transform: scale(1.18);
+}
+
+.farm-point[data-state='active'] .farm-point__dot {
+  box-shadow:
+    0 0 0 2px var(--color-surface),
+    0 0 0 5px var(--point-color),
+    var(--shadow-soft);
+}
+
+/* Optional attention ring, switched off from the config and under reduced motion. */
+.farm-point__pulse {
+  width: var(--point-dot-size);
+  height: var(--point-dot-size);
+  border: 2px solid var(--point-color);
+  border-radius: var(--radius-full);
+  opacity: 0;
+  animation: farm-point-pulse 2600ms var(--ease-out) infinite;
+}
+
+@keyframes farm-point-pulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.5;
+  }
+  70% {
+    transform: scale(2);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.farm-point__label {
+  position: absolute;
+  top: calc(50% + var(--point-dot-size));
+  left: 50%;
+  translate: -50% 0;
+  margin: var(--space-1) 0 0;
+  padding-left: var(--label-dx, 0px);
+  padding-top: var(--label-dy, 0px);
+  pointer-events: none;
+}
+
+.farm-point__label-text {
+  display: block;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  background: var(--color-soil-900);
+  color: var(--color-text-inverse);
+  font-size: var(--text-xs);
+  line-height: 1.2;
+  white-space: nowrap;
+  box-shadow: var(--shadow-soft);
+  opacity: 0;
+  transform: translateY(4px);
+  transition:
+    opacity var(--duration-hover) var(--ease-out),
+    transform var(--duration-hover) var(--ease-out);
+}
+
+/* Keyboard focus reveals the label exactly like hover does. */
+.farm-point__label-text[data-visible='true'] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .farm-point__pulse {
+    animation: none;
+  }
+}
+
+/*
+ * Touch and coarse pointers: no hover to discover anything with, so the labels
+ * are permanent and the targets grow past the 48px minimum.
+ */
+@media (hover: none), (pointer: coarse) {
+  .farm-point {
+    --point-hit: calc(var(--point-hit-size) + 8px);
+  }
+
+  .farm-point__label-text {
+    opacity: 1;
+    transform: none;
+    font-size: var(--text-sm);
+  }
+}
