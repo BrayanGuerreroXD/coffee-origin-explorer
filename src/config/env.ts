@@ -43,6 +43,24 @@ export function parseEnvText(value: string): string {
   return value.replace(/\\n/g, '\n').trim()
 }
 
+/**
+ * Rewrites a root-relative asset path so it survives being served from a
+ * sub-path, which is how GitHub Pages serves a project site.
+ *
+ * Configuration is written as `/assets/...` because that is what it looks like
+ * on disk, but under a base of `/coffee-origin-explorer/` that path resolves
+ * against the domain root and 404s. Absolute URLs and already-relative paths
+ * are left exactly as given, so pointing a variable at a CDN keeps working.
+ */
+export function resolveAssetPath(path: string, base: string): string {
+  const trimmed = path.trim()
+  if (trimmed === '') return trimmed
+  // A protocol, or a protocol-relative URL: not ours to rewrite.
+  if (/^[a-z][a-z0-9+.-]*:/i.test(trimmed) || trimmed.startsWith('//')) return trimmed
+  if (!trimmed.startsWith('/')) return trimmed
+  return base.replace(/\/+$/, '') + trimmed
+}
+
 const POINT_INDEXES = [1, 2, 3, 4, 5] as const
 
 export const REQUIRED_KEYS: readonly string[] = [
@@ -73,21 +91,25 @@ function requiredString(raw: RawEnv, key: string): string {
   return (raw[key] as string).trim()
 }
 
-function pointFromRaw(raw: RawEnv, index: number): FarmPoint {
+function pointFromRaw(raw: RawEnv, index: number, base: string): FarmPoint {
   const layout = POINT_LAYOUT[index - 1]
   const prefix = 'VITE_POINT_' + index + '_'
   return {
     id: requiredString(raw, prefix + 'ID'),
     title: parseEnvText(raw[prefix + 'TITLE'] as string),
     tag: parseEnvText(raw[prefix + 'TAG'] as string),
-    image: requiredString(raw, prefix + 'IMAGE'),
+    image: resolveAssetPath(requiredString(raw, prefix + 'IMAGE'), base),
     description: parseEnvText(raw[prefix + 'TEXT'] as string),
     position: layout.position,
     depth: layout.depth,
   }
 }
 
-export function buildExperienceConfig(raw: RawEnv): FarmExperienceConfig {
+/**
+ * @param base Public base path the app is served from, normally
+ * `import.meta.env.BASE_URL`. Defaults to the domain root.
+ */
+export function buildExperienceConfig(raw: RawEnv, base = '/'): FarmExperienceConfig {
   validateRawEnv(raw)
 
   return {
@@ -95,11 +117,11 @@ export function buildExperienceConfig(raw: RawEnv): FarmExperienceConfig {
     location: parseEnvText(raw.VITE_APP_LOCATION as string),
     subtitle: parseEnvText(raw.VITE_APP_SUBTITLE as string),
     layers: {
-      paper: requiredString(raw, 'VITE_FARM_PAPER_IMAGE'),
-      map: requiredString(raw, 'VITE_FARM_MAP_IMAGE'),
-      foreground: requiredString(raw, 'VITE_FARM_FOREGROUND_IMAGE'),
+      paper: resolveAssetPath(requiredString(raw, 'VITE_FARM_PAPER_IMAGE'), base),
+      map: resolveAssetPath(requiredString(raw, 'VITE_FARM_MAP_IMAGE'), base),
+      foreground: resolveAssetPath(requiredString(raw, 'VITE_FARM_FOREGROUND_IMAGE'), base),
     },
-    points: POINT_INDEXES.map((index) => pointFromRaw(raw, index)),
+    points: POINT_INDEXES.map((index) => pointFromRaw(raw, index, base)),
     parallax: {
       maxX: toNumber(raw.VITE_PARALLAX_MAX_X, 0.45),
       maxY: toNumber(raw.VITE_PARALLAX_MAX_Y, 0.28),

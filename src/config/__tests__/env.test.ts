@@ -6,6 +6,7 @@ import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { describe, expect, it } from 'vitest'
 import {
+  resolveAssetPath,
   EnvConfigError,
   REQUIRED_KEYS,
   buildExperienceConfig,
@@ -397,6 +398,49 @@ describe('the shipped .env.example', () => {
       expect(point.title.length).toBeGreaterThan(0)
       expect(point.image.startsWith('/')).toBe(true)
       expect(point.description.length).toBeGreaterThan(0)
+    }
+  })
+})
+
+describe('resolveAssetPath', () => {
+  const BASE = '/coffee-origin-explorer/'
+
+  it('prefixes a root-relative path with the base', () => {
+    expect(resolveAssetPath('/assets/farm/map.svg', BASE)).toBe(
+      '/coffee-origin-explorer/assets/farm/map.svg',
+    )
+  })
+
+  it('does not double the slash between base and path', () => {
+    expect(resolveAssetPath('/a.svg', '/base/')).toBe('/base/a.svg')
+    expect(resolveAssetPath('/a.svg', '/base')).toBe('/base/a.svg')
+    expect(resolveAssetPath('/a.svg', '/base///')).toBe('/base/a.svg')
+  })
+
+  it('leaves a path untouched when served from the domain root', () => {
+    expect(resolveAssetPath('/assets/x.svg', '/')).toBe('/assets/x.svg')
+  })
+
+  it('never rewrites an absolute URL', () => {
+    expect(resolveAssetPath('https://cdn.example.com/x.jpg', BASE)).toBe(
+      'https://cdn.example.com/x.jpg',
+    )
+    expect(resolveAssetPath('//cdn.example.com/x.jpg', BASE)).toBe('//cdn.example.com/x.jpg')
+    expect(resolveAssetPath('data:image/svg+xml,<svg/>', BASE)).toBe('data:image/svg+xml,<svg/>')
+  })
+
+  it('leaves an already relative path alone', () => {
+    expect(resolveAssetPath('assets/x.svg', BASE)).toBe('assets/x.svg')
+  })
+
+  it('is applied to every configured image', () => {
+    const config = buildExperienceConfig(makeRawEnv(), BASE)
+
+    expect(config.layers.map).toBe('/coffee-origin-explorer/img/map.svg')
+    expect(config.layers.paper).toBe('/coffee-origin-explorer/img/paper.svg')
+    expect(config.layers.foreground).toBe('/coffee-origin-explorer/img/foreground.svg')
+    for (const point of config.points) {
+      expect(point.image.startsWith(BASE)).toBe(true)
     }
   })
 })
