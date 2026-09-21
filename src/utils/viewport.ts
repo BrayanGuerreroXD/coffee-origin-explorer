@@ -20,6 +20,28 @@ export function fitZoom(container: Size, world: Size = SCENE_WORLD): number {
 }
 
 /**
+ * Distance a perspective camera needs to sit at, on the Z axis, for the whole
+ * tilted map to fit inside the container.
+ *
+ * The map is rotated away from the camera, so its vertical extent on screen is
+ * foreshortened by cos(tilt) while its width is unaffected. Both axes are
+ * checked and the farther of the two distances wins, which is the perspective
+ * equivalent of the "contain" fit used by fitZoom.
+ */
+export function fitDistance(container: Size, world: Size = SCENE_WORLD): number {
+  const halfFov = (SCENE_WORLD.fov * Math.PI) / 360
+  const tanHalfFov = Math.tan(halfFov)
+  const aspect =
+    container.width > 0 && container.height > 0
+      ? container.width / container.height
+      : world.width / world.height
+
+  const forHeight = (world.height * Math.cos(SCENE_WORLD.tilt)) / (2 * tanHalfFov)
+  const forWidth = world.width / (2 * tanHalfFov * aspect)
+  return Math.max(forHeight, forWidth)
+}
+
+/**
  * Converts a scene coordinate to a pixel offset from the top-left of the
  * container, matching how an orthographic camera at the origin with the given
  * zoom projects that point. Y is flipped because scene-space grows upwards and

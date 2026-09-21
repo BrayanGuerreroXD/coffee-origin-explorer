@@ -20,9 +20,20 @@ export const SCENE_WORLD = {
    * Must be at least maxDisplacement * largestLayerFactor / halfViewport.
    */
   overscan: 0.24,
-  /** Clamp for the fitted zoom, in pixels per world unit. */
+  /** Clamp for the fitted zoom, in pixels per world unit. Fallback path only. */
   minZoom: 40,
   maxZoom: 220,
+
+  /**
+   * Tilt of the map plane away from the camera, in radians — about 24°.
+   * This is what makes it read as a map you are leaning over rather than a
+   * picture hanging flat, and under a perspective camera it is also what makes
+   * the top of the drawing converge.
+   */
+  tilt: 0.42,
+
+  /** Vertical field of view in degrees. Narrow keeps the distortion gentle. */
+  fov: 32,
 } as const
 
 export type SceneWorld = typeof SCENE_WORLD

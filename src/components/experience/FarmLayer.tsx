@@ -17,10 +17,12 @@ export interface FarmLayerProps {
 }
 
 /**
- * Distance between consecutive layers on the Z axis. Under an orthographic
- * camera this only disambiguates depth sorting; it produces no perspective.
+ * Distance between consecutive layers on the Z axis. Under the perspective
+ * camera this is real separation: it sets the draw order and it gives each
+ * plane a slightly different distance, so the parallax reads as depth rather
+ * than as three pictures sliding over one another.
  */
-const Z_STEP = 0.01
+const Z_STEP = 0.12
 
 function textureAspect(texture: Texture): number {
   const image = texture.image as { width?: number; height?: number } | undefined

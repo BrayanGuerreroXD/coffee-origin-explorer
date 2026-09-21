@@ -70,3 +70,13 @@
   inset: 0;
   z-index: var(--z-points);
 }
+
+/* The map can be dragged, so the canvas advertises it and swallows touch pans. */
+.scene {
+  cursor: grab;
+  touch-action: none;
+}
+
+.scene--grabbing {
+  cursor: grabbing;
+}

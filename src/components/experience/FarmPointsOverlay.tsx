@@ -4,12 +4,21 @@ import type { FarmPoint as FarmPointData } from '../../config/types'
 import { experienceConfig } from '../../config'
 import { LAYER_FACTORS, layerOffset, useParallax } from '../../hooks/useParallax'
 import { fitZoom, worldToScreen, type Size } from '../../utils/viewport'
+import type { PointProjection } from '../../hooks/pointProjection'
 
 export interface FarmPointsOverlayProps {
   points: FarmPointData[]
   activePointId: string | null
   onSelect: (point: FarmPointData) => void
   className?: string
+  /**
+   * Screen positions published by the scene. When a projector is driving it,
+   * the markers follow the real camera; otherwise they fall back to the flat
+   * projection below, which is what the static no-WebGL image needs.
+   */
+  projection?: PointProjection
+  /** Forwarded from each marker, for the map-area highlight. */
+  onHoverChange?: (id: string | null) => void
 }
 
 const GROUP_LABEL = 'Puntos de interés de la finca'
@@ -36,6 +45,8 @@ export function FarmPointsOverlay({
   activePointId,
   onSelect,
   className,
+  projection,
+  onHoverChange,
 }: FarmPointsOverlayProps) {
   const rootRef = useRef<HTMLDivElement>(null)
   const [size, setSize] = useState<Size>(EMPTY_SIZE)
@@ -74,9 +85,39 @@ export function FarmPointsOverlay({
     return () => window.removeEventListener('resize', measure)
   }, [])
 
+  /*
+   * Live path: the scene has projected the points through the real camera, so
+   * each marker is placed absolutely from that result. Nothing is transformed
+   * here — the tilt and the parallax are already baked into the projection.
+   */
+  useEffect(() => {
+    const element = rootRef.current
+    if (!element || !projection) return
+
+    const place = () => {
+      if (!projection.live) return
+      const markers = element.querySelectorAll<HTMLElement>('[data-farm-point]')
+      element.style.transform = ''
+      for (const marker of markers) {
+        const id = marker.dataset.farmPoint
+        const position = id ? projection.positions.get(id) : undefined
+        if (!position) continue
+        marker.style.left = `${position.left.toFixed(2)}px`
+        marker.style.top = `${position.top.toFixed(2)}px`
+        marker.style.setProperty('--point-dx', '0px')
+        marker.style.setProperty('--point-dy', '0px')
+      }
+    }
+
+    place()
+    return projection.subscribe(place)
+  }, [projection, points])
+
   useEffect(() => {
     const element = rootRef.current
     if (!element) return
+    // The flat fallback only runs when no projector is driving the store.
+    if (projection?.live) return
 
     if (parallax.reducedMotion) {
       element.style.transform = ''
@@ -90,6 +131,8 @@ export function FarmPointsOverlay({
     const { maxX, maxY } = experienceConfig.parallax
 
     const unsubscribe = parallax.subscribe((value) => {
+      // A projector may start driving the store after this effect was set up.
+      if (projection?.live) return
       const currentZoom = zoomRef.current
       const offset = layerOffset(value, LAYER_FACTORS.points, maxX, maxY)
       // Scene space grows upwards, CSS downwards, hence the flipped Y.
@@ -107,7 +150,7 @@ export function FarmPointsOverlay({
       unsubscribe()
       element.style.transform = ''
     }
-  }, [parallax, points])
+  }, [parallax, points, projection])
 
   return (
     <div
@@ -126,6 +169,7 @@ export function FarmPointsOverlay({
             isActive={point.id === activePointId}
             onSelect={onSelect}
             style={style}
+            onHoverChange={onHoverChange}
           />
         )
       })}

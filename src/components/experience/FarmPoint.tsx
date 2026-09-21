@@ -11,6 +11,8 @@ export interface FarmPointProps {
   onSelect: (point: FarmPointData) => void
   /** Absolute placement handed down by the overlay, in pixels. */
   style?: CSSProperties
+  /** Reports hover and keyboard focus so the map can light up the matching area. */
+  onHoverChange?: (id: string | null) => void
 }
 
 /** Hover scale duration, inside the 180-240ms band of the spec timing table. */
@@ -27,7 +29,7 @@ type PointState = 'rest' | 'hover' | 'focus' | 'active'
  * Hover and keyboard focus produce the same visual state, so no information is
  * hover-only.
  */
-export function FarmPoint({ point, isActive, onSelect, style }: FarmPointProps) {
+export function FarmPoint({ point, isActive, onSelect, style, onHoverChange }: FarmPointProps) {
   const [isHovered, setHovered] = useState(false)
   const [isFocused, setFocused] = useState(false)
   const reducedMotion = useReducedMotion()
@@ -54,10 +56,22 @@ export function FarmPoint({ point, isActive, onSelect, style }: FarmPointProps) 
       aria-haspopup="dialog"
       aria-expanded={isActive}
       onClick={() => onSelect(point)}
-      onPointerEnter={() => setHovered(true)}
-      onPointerLeave={() => setHovered(false)}
-      onFocus={() => setFocused(true)}
-      onBlur={() => setFocused(false)}
+      onPointerEnter={() => {
+        setHovered(true)
+        onHoverChange?.(point.id)
+      }}
+      onPointerLeave={() => {
+        setHovered(false)
+        onHoverChange?.(null)
+      }}
+      onFocus={() => {
+        setFocused(true)
+        onHoverChange?.(point.id)
+      }}
+      onBlur={() => {
+        setFocused(false)
+        onHoverChange?.(null)
+      }}
     >
       <span className="farm-point__halo" aria-hidden="true" />
       {showPulse ? <span className="farm-point__pulse" aria-hidden="true" /> : null}
