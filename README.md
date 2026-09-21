@@ -1,11 +1,38 @@
-# Origen de un café
+# ☕ Origen de un café
 
-Experiencia web de una sola pantalla: un mapa ilustrado e interactivo de una finca
-cafetera de Gramalote, Norte de Santander. El mapa se dibuja con Three.js sobre una
-cámara ortográfica, el cursor produce un parallax suave, y cada uno de los cinco
-puntos de interés abre un modal con su fotografía y su texto.
+> An interactive, hand-drawn map of a coffee farm in Gramalote, Norte de Santander, Colombia.
+> Move the cursor, lean into the hills, and open the five places where a cup of coffee begins.
 
-## Arranque
+---
+
+## 🌱 Why this exists
+
+Two reasons, and they matter equally.
+
+**🧪 To learn Three.js properly.** Not by following a spinning-cube tutorial, but by building
+something with real constraints: a tilted perspective camera that has to stay framed on any
+screen, DOM markers that must stay glued to a drawing while it pans and zooms, a parallax that
+has to read as depth without making anyone seasick, and a fallback for the machines where WebGL
+never starts. React Three Fiber is the library under the microscope here — every architectural
+decision in this repository was an excuse to understand how it actually behaves.
+
+**🇨🇴 To put Norte de Santander coffee on a screen it deserves.** Colombian coffee is famous;
+the people who grow it usually are not. Gramalote is a small municipality in the mountains of
+Norte de Santander, and like so many towns in that range, its economy is carried by families who
+plant, pick, ferment, wash, dry and bag coffee by hand, season after season. This project exists
+to give one of those farms a place on the internet that feels like it was made with care — a map
+you can wander rather than a product page you scroll past.
+
+The five points on the map are the five stages of that work: **el cultivo**, **la cosecha**,
+**el beneficio**, **el secado** and **el café listo**. 🌄 🍒 💧 ☀️ 📦
+
+> ⚠️ Every image and every text in this repository right now is **provisional**. They are
+> placeholders so the project can run before the family's real photographs and their real story
+> exist. Nothing here should be presented as a genuine photograph of the farm.
+
+---
+
+## 🚀 Getting started
 
 ```bash
 npm install
@@ -13,94 +40,129 @@ cp .env.example .env
 npm run dev
 ```
 
-La aplicación arranca con el contenido de `.env.example` sin tocar una línea de código.
+The project runs from `.env.example` as it ships, without touching a line of code.
 
-| Comando           | Qué hace                                            |
-| ----------------- | --------------------------------------------------- |
-| `npm run dev`     | Servidor de desarrollo en http://localhost:5173     |
-| `npm run build`   | Compilación de producción con verificación de tipos |
-| `npm run preview` | Sirve la compilación de producción                  |
-| `npm test`        | Suite completa de pruebas                           |
-| `npm run lint`    | ESLint                                              |
-| `npm run format`  | Prettier sobre `src/`                               |
+| Command           | What it does                                |
+| ----------------- | ------------------------------------------- |
+| `npm run dev`     | Development server at http://localhost:5173 |
+| `npm run build`   | Production build, with type checking        |
+| `npm run preview` | Serves the built output                     |
+| `npm test`        | The full test suite                         |
+| `npm run lint`    | ESLint                                      |
+| `npm run format`  | Prettier over `src/`                        |
 
-## Cómo cambiar el contenido
+### 🎨 Regenerating the artwork
 
-Todo el contenido vive en `.env`. Ningún componente visual lee `import.meta.env`:
-solo lo hace `src/config/env.ts`, que valida las variables al arrancar y falla con un
-error descriptivo si falta alguna obligatoria.
+The SVGs are not drawn by hand. Two Node generators emit them deterministically from a seed,
+which is the only way to get the density of marks that a pen-and-ink look needs.
 
-| Variable                                                   | Para qué sirve                               |
-| ---------------------------------------------------------- | -------------------------------------------- |
-| `VITE_APP_TITLE`, `VITE_APP_LOCATION`, `VITE_APP_SUBTITLE` | Cabecera de la página                        |
-| `VITE_FARM_PAPER_IMAGE`                                    | Capa de fondo: el papel                      |
-| `VITE_FARM_MAP_IMAGE`                                      | El dibujo del mapa                           |
-| `VITE_FARM_FOREGROUND_IMAGE`                               | Primer plano y viñeta                        |
-| `VITE_POINT_N_ID`                                          | Identificador interno del punto N            |
-| `VITE_POINT_N_TITLE`                                       | Título mostrado en el marcador y en el modal |
-| `VITE_POINT_N_TAG`                                         | Etiqueta corta sobre el título               |
-| `VITE_POINT_N_IMAGE`                                       | Ruta de la imagen del modal                  |
-| `VITE_POINT_N_TEXT`                                        | Texto descriptivo                            |
-| `VITE_PARALLAX_MAX_X`, `VITE_PARALLAX_MAX_Y`               | Desplazamiento máximo, en unidades de escena |
-| `VITE_PARALLAX_SMOOTHING`                                  | Suavizado por fotograma; más bajo, más lento |
-| `VITE_POINT_PULSE_ENABLED`                                 | Anillo de atención en los marcadores         |
-| `VITE_MODAL_BACKDROP_BLUR`                                 | Desenfoque del fondo del modal, en píxeles   |
+```bash
+node scripts/generate-map.mjs
+node scripts/generate-vignettes.mjs
+```
 
-Para sustituir una imagen basta con dejar el archivo en `public/assets/` y apuntar la
-variable a su ruta pública. No hace falta tocar componentes.
+---
 
-Las posiciones de los cinco puntos no vienen de `.env`, porque son una decisión visual
-y no contenido. Están en `src/config/farmPoints.ts`, en unidades de escena.
+## 📝 Changing the content
 
-## Estructura
+Everything the visitor reads lives in `.env`. No visual component touches `import.meta.env`;
+only `src/config/env.ts` does, and it validates at start-up, failing with an error that names
+every missing variable.
+
+| Variable                                                   | Controls                                  |
+| ---------------------------------------------------------- | ----------------------------------------- |
+| `VITE_APP_TITLE`, `VITE_APP_LOCATION`, `VITE_APP_SUBTITLE` | The page header                           |
+| `VITE_FARM_PAPER_IMAGE`                                    | The paper the map sits on                 |
+| `VITE_FARM_MAP_IMAGE`                                      | The drawing itself                        |
+| `VITE_FARM_FOREGROUND_IMAGE`                               | Foreground marks and vignette             |
+| `VITE_POINT_N_ID`                                          | Internal id of point N                    |
+| `VITE_POINT_N_TITLE`                                       | Title on the marker and in the modal      |
+| `VITE_POINT_N_TAG`                                         | Short label above the title               |
+| `VITE_POINT_N_IMAGE`                                       | The modal's image                         |
+| `VITE_POINT_N_TEXT`                                        | Its description                           |
+| `VITE_PARALLAX_MAX_X`, `VITE_PARALLAX_MAX_Y`               | Parallax reach, in scene units            |
+| `VITE_PARALLAX_SMOOTHING`                                  | Easing per frame; lower is slower         |
+| `VITE_POINT_PULSE_ENABLED`                                 | The attention ring on the markers         |
+| `VITE_MODAL_BACKDROP_BLUR`                                 | Backdrop blur behind the modal, in pixels |
+
+To swap an image, drop the file in `public/assets/` and point the variable at its public path.
+No component needs to change.
+
+The five marker positions deliberately do **not** come from `.env`: they are a visual decision
+rather than content, and they live in `src/config/farmPoints.ts` in scene units.
+
+---
+
+## 🧭 How it is put together
 
 ```text
 src/
-├── config/      env.ts es el único módulo que conoce import.meta.env
-├── hooks/       parallax compartido, reduced motion, zoom responsive
-├── utils/       proyección mundo→píxel, matemática, detección de WebGL
+├── config/      env.ts is the only module that knows about import.meta.env
+├── hooks/       shared parallax, reduced motion, camera control, projection store
+├── utils/       world-to-pixel projection, maths, gestures, WebGL detection
 ├── components/
-│   ├── experience/   escena WebGL, capas, puntos, composición
-│   ├── modal/        modal accesible, fuera del canvas
-│   └── common/       imagen con fallback, indicador de carga
-└── styles/      tokens.css define la paleta; ningún componente fija colores
+│   ├── experience/   the WebGL scene, layers, markers, camera rig, composition
+│   ├── modal/        the accessible dialog, rendered outside the canvas
+│   └── common/       image with fallback, loading indicator
+└── styles/      tokens.css owns the palette; no component hardcodes a colour
 ```
 
-## Decisiones que conviene conocer
+### Decisions worth knowing
 
-**Los puntos son DOM, no mallas de Three.js.** Son `<button>` reales en una capa
-superpuesta, movidos por el mismo parallax. Así el foco de teclado y ARIA funcionan
-sin esfuerzo, los puntos sobreviven al fallback sin WebGL, y son verificables en
-pruebas. La escena y la capa de puntos comparten un único contrato espacial
-(`src/config/scene.ts` y `src/utils/viewport.ts`) para no desalinearse.
+**🎯 The markers are DOM, not Three.js meshes.** They are real `<button>` elements in an overlay
+above the canvas. Keyboard focus and ARIA come for free, they survive the no-WebGL fallback, and
+they can be tested in jsdom. Their screen positions are projected by the scene through the real
+camera on every frame and published to the overlay — with a tilted perspective camera there is no
+closed-form pixel position any more, and one source of truth is what stops a marker drifting off
+the lot it points at.
 
-**El zoom de la cámara se ajusta al contenedor.** Un zoom fijo recortaría una parte
-distinta del dibujo en cada pantalla, y el requisito es que los cinco puntos se vean
-siempre. Las capas se dibujan más grandes que el mapa para que el parallax no descubra
-un borde vacío, conservando la proporción del dibujo: antes que deformarlo en una
-pantalla muy alta, se deja ver el papel.
+**📐 The camera frames itself.** A fixed zoom would crop a different part of the drawing on every
+screen, and all five points have to stay visible. Layers are drawn larger than the map so the
+parallax never reveals an empty edge, and larger again to pay for the keystone the tilt
+introduces. The drawing's aspect ratio is always preserved: on a very tall screen you get paper
+above and below rather than a stretched illustration.
 
-**El mapa es un solo dibujo, no un decorado recortado.** Por eso hay tres planos y no
-siete, y por eso la amplitud del parallax es baja: con más separación se nota que la
-ilustración está partida en trozos.
+**🗺️ The map is one drawing, not a cut-out diorama.** That is why there are three planes and not
+seven, and why the parallax is gentle. With more separation you start to see that the
+illustration has been sliced up.
 
-## Estado de las imágenes
+**🖐️ Wheel to zoom, drag to pan, and a flight to whichever point you open.** Deliberately not
+`OrbitControls`: rotating would break the illusion of ink on paper, and the tilt is fixed by
+design. The camera only ever moves parallel to the map or along its own axis.
 
-Las ilustraciones actuales son **provisionales**. Se generan por código con
-`node scripts/generate-map.mjs` y `node scripts/generate-vignettes.mjs`, que las
-escriben de forma determinista a partir de una semilla. Sirven para que el proyecto se
-pueda ejecutar y evaluar antes de disponer del material real, y están pensadas para
-sustituirse por las fotografías de la familia y por ilustración encargada.
+**🪟 The modal lives outside the canvas.** It is DOM in a portal, with trapped focus, closing on
+the button, on `Escape` and on a backdrop click, and returning focus to the marker that opened
+it. The scene is marked `inert` while it is open.
 
-Las cinco viñetas llevan la marca «Ilustración provisional» de forma visible: ninguna
-debe presentarse como una foto real de la finca. Ver
-`public/assets/reference/ATTRIBUTIONS.md`.
+---
 
-## Accesibilidad
+## ♿ Accessibility
 
-Los cinco puntos son botones navegables con teclado, con nombre accesible y
-`aria-expanded`. El modal es un `role="dialog"` con foco atrapado, cierre con `Escape`,
-con el botón y con clic en el fondo, y devuelve el foco al punto que lo abrió. La
-escena queda `inert` mientras el modal está abierto. Se respeta
-`prefers-reduced-motion`: con esa preferencia activa el parallax se detiene y las
-animaciones se reducen a un cambio de opacidad.
+All five points are keyboard-navigable buttons with an accessible name and `aria-expanded`.
+The dialog is a `role="dialog"` with focus management as described above. Hovering **or**
+focusing a marker washes that area of the map in the accent colour, so nothing is discoverable
+by hover alone. `prefers-reduced-motion` is honoured: the parallax stops and the animations
+collapse to a plain opacity change.
+
+---
+
+## 🖼️ On the artwork
+
+The current illustrations are placeholders generated by the scripts above. They carry the
+density that the style needs, but the value structure is still flat — there are no real darks
+anchoring the composition — and they are meant to be replaced by commissioned artwork and by the
+family's own photographs.
+
+The five vignettes are visibly marked _Ilustración provisional_. See
+`public/assets/reference/ATTRIBUTIONS.md`: everything shipped here is original work for this
+project and carries no third-party licence obligation.
+
+---
+
+<div align="center">
+
+**Made for the mountains of Gramalote, Norte de Santander 🏔️**
+
+React 19 · Vite · TypeScript · Three.js via React Three Fiber · Motion
+
+</div>
