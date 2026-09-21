@@ -71,7 +71,7 @@ export function worldToScreen(
  * gradient behind the canvas shows through — letterboxing beats distortion.
  */
 export function layerCoverSize(aspect: number): Size {
-  const factor = 1 + SCENE_WORLD.overscan
+  const factor = (1 + SCENE_WORLD.overscan) * SCENE_WORLD.keystone
   const targetWidth = SCENE_WORLD.width * factor
   const targetHeight = SCENE_WORLD.height * factor
   const safeAspect = aspect > 0 && Number.isFinite(aspect) ? aspect : targetWidth / targetHeight

@@ -17,6 +17,7 @@ import type { CameraControl } from '../../hooks/cameraControl'
 import type { FarmPoint } from '../../config/types'
 import { SCENE_WORLD } from '../../config/scene'
 import { fitDistance } from '../../utils/viewport'
+import { startsMapDrag } from '../../utils/gestures'
 import { CameraRig } from './CameraRig'
 import { FarmScene } from './FarmScene'
 import { SceneFallback } from './SceneFallback'
@@ -100,6 +101,8 @@ export function SceneCanvas({
 
     const onPointerDown = (event: PointerEvent) => {
       if (event.button !== 0) return
+      if (!startsMapDrag(event.target)) return
+
       drag = { pointerId: event.pointerId, x: event.clientX, y: event.clientY }
       element.setPointerCapture(event.pointerId)
       element.classList.add('scene--grabbing')

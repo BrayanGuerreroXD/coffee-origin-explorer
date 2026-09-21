@@ -34,6 +34,16 @@ export const SCENE_WORLD = {
 
   /** Vertical field of view in degrees. Narrow keeps the distortion gentle. */
   fov: 32,
+
+  /**
+   * Extra size given to every layer to pay for the tilt.
+   *
+   * Rotating a plane away from the camera pushes its top edge farther off, so
+   * that edge projects narrower and shorter and the top corners pull inward,
+   * leaving wedges of bare paper. Enlarging the planes past the keystone is
+   * what keeps the drawing filling the frame.
+   */
+  keystone: 1.32,
 } as const
 
 export type SceneWorld = typeof SCENE_WORLD

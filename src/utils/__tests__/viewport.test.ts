@@ -56,7 +56,7 @@ describe('worldToScreen', () => {
 })
 
 describe('layerCoverSize', () => {
-  const factor = 1 + SCENE_WORLD.overscan
+  const factor = (1 + SCENE_WORLD.overscan) * SCENE_WORLD.keystone
 
   it('covers the world box plus the overscan', () => {
     const cover = layerCoverSize(1.6)
